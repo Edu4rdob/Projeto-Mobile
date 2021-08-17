@@ -1,0 +1,124 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      title: "Historico",
+      debugShowCheckedModeBanner: false,
+      home: HistoricoPage(),
+    ),
+  );
+}
+
+class HistoricoPage extends StatefulWidget {
+  const HistoricoPage({Key key}) : super(key: key);
+
+  @override
+  _HistoricoPageState createState() => _HistoricoPageState();
+}
+
+class _HistoricoPageState extends State<HistoricoPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: buildAppBar(),
+      body: buildBody(),
+
+    );//Scaffold
+  }
+
+  buildBody(){
+    background: color: Colors(0x4292bf),
+    return ListView(
+        children: [
+          title:  Align(
+            alignment: Alignment.centerLeft,
+            child: Textt('PLANTÃO'), 
+          ),
+
+          title:  Align(
+            alignment: Alignment.centerRight,
+            child: Textt('STATUS'), 
+          ),
+
+          buildListTile(
+            duracao: '12h',
+            dimg: 'bolaamarela.png',
+            data: '11/09',
+            plantao: 'Plantão Cardiológico',
+            status: 'ok.png',
+          ),
+
+          buildListTile(
+            duracao: '24h',
+            dimg: 'bolaverde.png',
+            data: '14/09',
+            plantao: 'Plantão Neurológico',
+            status: 'ok.png',
+          ),
+
+          buildListTile(
+            duracao: '12h',
+            dimg: 'bolaamarela.png',
+            data: '15/09',
+            plantao: 'Plantão Cardiológico',
+            status: 'x.png',
+          ),
+
+          buildListTile(
+            duracao: '12h',
+            dimg: 'bolaamarela.png',
+            data: '19/09',
+            plantao: 'Plantão Ortopédico',
+            status: 'ok.png',
+          ),
+
+        ],
+    ),
+  };
+
+  buildListTile({String duracao, String dimg, String data, String plantao, String status}){     
+      return  ListTile(
+        leading: CircleAvatar(
+          backgroundImage: Stack(
+            children: [
+              ClipRRect(
+                child: Image.asset(dimg, radius: 50),
+                Text(duracao),
+              ),//ClipRRect
+            ],
+          ),//Stack
+        ),//CircleAvatar
+        
+        title: Text(
+          data,
+          style: TextStyle(
+            fontWeight: FontWeight.normal, fontSize: 14, color: Colors(0x295872), 
+          ),//TextStyle
+        ),//Text
+
+        subtitle: Text(
+          plantao,
+          style: TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 18, color: Colors(0x295872),
+          ),//TextStyle
+        ),//Text
+
+        trailing: Text(
+          child: Image.asset(status),
+        ),
+
+      ),//ListTile
+  }
+
+  AppBar buildAppBar(){
+      return AppBar(
+        backgroudColor: Colors(0x357599),
+        leading: IconButton(icon: Icon(Icons.autorenew), onPressed () {} ),
+        actions: [
+          IconButton(icon: Icon(Icons.search), onPressed () {} ),
+        ],
+
+      );//AppBar
+  }
+}
