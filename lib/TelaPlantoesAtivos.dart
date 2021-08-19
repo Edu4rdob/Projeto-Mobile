@@ -19,62 +19,62 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
       drawer: buildDrawer(context),
     );
   }
+}
 
-  Drawer buildDrawer(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          Container(
-            color: Color.fromRGBO(66, 165, 245, 1.0),
-          ),
-          ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
-              ),
-              subtitle: const Text('Hospital Alan Turing'),
-              leading: Icon(Icons.account_circle_rounded, size: 50),
-              trailing: Icon(Icons.settings, size: 30)),
-          ListTile(
-            title: const Text('ÍNICIO'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('CAIXA DE ENTRADA'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('SAIR'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
-    );
-  }
+Drawer buildDrawer(BuildContext context) {
+  return Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        Container(
+          color: Color.fromRGBO(66, 165, 245, 1.0),
+        ),
+        ListTile(
+            title: const Text(
+              'DRA. ADA LOVELACE',
+            ),
+            subtitle: const Text('Hospital Alan Turing'),
+            leading: Icon(Icons.account_circle_rounded, size: 50),
+            trailing: Icon(Icons.settings, size: 30)),
+        ListTile(
+          title: const Text('ÍNICIO'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: const Text('CAIXA DE ENTRADA'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: const Text('GERENCIAR PLANTÕES'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: const Text('PLANTÕES GERENCIADOS'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: const Text('RELATÓRIO'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+        ListTile(
+          title: const Text('SAIR'),
+          onTap: () {
+            Navigator.pop(context);
+          },
+        ),
+      ],
+    ),
+  );
 }
 
 buildAppBar() {

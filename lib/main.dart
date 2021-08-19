@@ -4,10 +4,11 @@ import 'package:flutter_application_1/TelaLogin.dart';
 import 'TelaGerPlantoes.dart';
 import 'troca.dart';
 import 'validar_email.dart';
+import 'TelaChat.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: TelaLoginPage(),
+    home: TelaPlantoes(),
   ));
 }
