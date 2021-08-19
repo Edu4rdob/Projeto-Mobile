@@ -22,9 +22,13 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                 colors: [Colors.blue.shade400, Colors.blue.shade50])),
         child: ListView(
           children: [
-            Container(
+            SizedBox(height: 80),
+            SizedBox(
+              width: 200,
+              height: 200,
               child: Image.asset('ALAN_TURING.png'),
             ),
+            SizedBox(height: 40),
             Container(
               margin: EdgeInsets.only(top: 0, left: 100, bottom: 5),
               child: Text(
@@ -60,7 +64,7 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 10, bottom: 30),
+                margin: EdgeInsets.only(top: 30, bottom: 50),
                 child: Container(
                   child: Align(
                       child: ElevatedButton(
