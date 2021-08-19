@@ -1,4 +1,4 @@
-
+/*
 import 'package:flutter/material.dart';
 
 class CaixaDeEntrada extends StatefulWidget{
@@ -15,7 +15,7 @@ class _CaixaDeEntrada extends State<CaixaDeEntrada> with SingleTickerProviderSta
 
   @override
   void initState(){
-      _controller = TabController(lenght: 3,vsync: this);
+      _controller = TabController(length: 3,vsync: this);
   }
 
   @override 
@@ -92,3 +92,4 @@ class _CaixaDeEntrada extends State<CaixaDeEntrada> with SingleTickerProviderSta
   }
 
 }
+*/
