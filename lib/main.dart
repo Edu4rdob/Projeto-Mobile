@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_application_1/telas_plantoes_ativos.dart';
 import 'package:flutter_application_1/tela_plantoes_registrados.dart';
 //import 'package:flutter_application_1/Historico.dart';
-import 'package:flutter_application_1/cadastro_pt1.dart';
+//import 'package:flutter_application_1/cadastro_pt1.dart';
 //import 'package:flutter_application_1/Cadastro2.dart';
 //import 'package:flutter_application_1/tela_Gerenc_plantoes.dart';
 //import 'package:flutter_application_1/chat.dart';
@@ -16,5 +16,5 @@ void main() {
       //home: TelaGerenciarPlantoes(),
       //home: TelaPlantoesRegistrados()
       //home: TelaPlantoes()
-      home: TelaPlantoesRegistrados()));
+      home: TelaLoginPage()));
 }
