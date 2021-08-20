@@ -45,12 +45,6 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             },
           ),
           ListTile(
-            title: const Text('CAIXA DE ENTRADA'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () {
               Navigator.pop(context);
@@ -90,7 +84,7 @@ buildAppBar() {
       alignment: Alignment.topLeft,
       child: Text('FILTRAR', style: TextStyle(fontSize: 15)),
     ),
-    backgroundColor: Colors.blue.shade500,
+    backgroundColor: Color(0xff204559),
   );
 }
 
@@ -100,7 +94,7 @@ buildIconAppBar() {
       Icons.message_rounded,
       size: 30,
     ),
-    backgroundColor: Colors.blue.shade500,
+    backgroundColor: Color(0xff204559),
     onPressed: () {},
   );
 }
@@ -119,7 +113,7 @@ buildRow() {
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.blue.shade400, Colors.blue.shade50]),
+                colors: [Color(0xff295872), Color(0xff8dbeda)]),
             border: Border(
               right: BorderSide(
                 color: Colors.white, //                    <--- top side
@@ -157,7 +151,7 @@ buildRow() {
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.blue.shade300, Colors.blue.shade50]),
+                colors: [Color(0xff295872), Color(0xff8dbeda)]),
           ),
           child: ListView(
             children: [

@@ -42,12 +42,6 @@ class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
             },
           ),
           ListTile(
-            title: const Text('CAIXA DE ENTRADA'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () {
               Navigator.pop(context);
@@ -135,10 +129,16 @@ buildRow() {
                 trailing: Container(
                   width: 100,
                   child: Row(children: <Widget>[
-                    Icon(Icons.cancel, size: 30),
+                    Icon(
+                      Icons.cancel,
+                      size: 30,
+                      color: Colors.red.shade700,
+                    ),
+                    SizedBox(width: 10),
                     Icon(
                       Icons.change_circle,
                       size: 30,
+                      color: Colors.orange.shade300,
                     ),
                   ]),
                 ),
@@ -156,10 +156,16 @@ buildRow() {
                 trailing: Container(
                   width: 100,
                   child: Row(children: <Widget>[
-                    Icon(Icons.cancel, size: 30),
+                    Icon(
+                      Icons.cancel,
+                      size: 30,
+                      color: Colors.red.shade700,
+                    ),
+                    SizedBox(width: 10),
                     Icon(
                       Icons.change_circle,
                       size: 30,
+                      color: Colors.orange.shade300,
                     ),
                   ]),
                 ),
@@ -177,10 +183,16 @@ buildRow() {
                 trailing: Container(
                   width: 100,
                   child: Row(children: <Widget>[
-                    Icon(Icons.cancel, size: 30),
+                    Icon(
+                      Icons.cancel,
+                      size: 30,
+                      color: Colors.red.shade700,
+                    ),
+                    SizedBox(width: 10),
                     Icon(
                       Icons.change_circle,
                       size: 30,
+                      color: Colors.orange.shade300,
                     ),
                   ]),
                 ),

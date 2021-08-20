@@ -50,12 +50,6 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
             },
           ),
           ListTile(
-            title: const Text('CAIXA DE ENTRADA'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () {
               Navigator.pop(context);
