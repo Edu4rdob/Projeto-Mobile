@@ -27,7 +27,6 @@ Esta é a tela dos "meus plantões". Aqui o usuário a tem como inicio/home apó
 ### validar_email.dart troca.dart:
 Elas prestam a verificação por email e a mudança de senha caso o usuário clique em esqueci a senha na tela de login.
 
-##
 ## integrantes:
 ### - Alan
 ### - Diogo
