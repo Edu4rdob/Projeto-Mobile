@@ -84,7 +84,7 @@ buildAppBar() {
     ],
     title:
         Align(alignment: Alignment.center, child: Text('GERENCIAR PLANTÕES')),
-    backgroundColor: Colors.blue.shade500,
+    backgroundColor: Color(0xff204559),
   );
 }
 
@@ -94,7 +94,7 @@ buildIconAppBar() {
       Icons.message_rounded,
       size: 30,
     ),
-    backgroundColor: Colors.blue.shade500,
+    backgroundColor: Color(0xff295872),
     onPressed: () {},
   );
 }
@@ -111,7 +111,7 @@ buildRow() {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topLeft,
+                begin: Alignment.topCenter,
                 end: Alignment.bottomRight,
                 colors: [Color(0xff295872), Color(0xff8dbeda)]),
             border: Border(
