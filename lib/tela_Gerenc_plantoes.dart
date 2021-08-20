@@ -113,7 +113,7 @@ buildRow() {
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [Colors.blue.shade400, Colors.blue.shade50]),
+                colors: [Color(0xff295872), Color(0xff8dbeda)]),
             border: Border(
               right: BorderSide(
                 color: Colors.white, //                    <--- top side

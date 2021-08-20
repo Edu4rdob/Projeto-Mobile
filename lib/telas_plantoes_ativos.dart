@@ -92,7 +92,7 @@ buildAppBar() {
       IconButton(onPressed: () {}, icon: Icon(Icons.search)),
     ],
     title: Align(alignment: Alignment.center, child: Text('MEUS PLANTÕES')),
-    backgroundColor: Colors.blue.shade500,
+    backgroundColor: Color(0xff204559),
   );
 }
 
@@ -102,7 +102,7 @@ buildIconAppBar() {
       Icons.message_rounded,
       size: 30,
     ),
-    backgroundColor: Colors.blue.shade500,
+    backgroundColor: Color(0xff295872),
     onPressed: () {},
   );
 }
@@ -119,9 +119,9 @@ buildRow() {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topLeft,
+                begin: Alignment.topCenter,
                 end: Alignment.bottomRight,
-                colors: [Colors.blue.shade400, Colors.blue.shade50]),
+                colors: [Color(0xff295872), Color(0xff8dbeda)]),
             border: Border(
               right: BorderSide(
                 color: Colors.white, //                    <--- top side
@@ -146,9 +146,9 @@ buildRow() {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topLeft,
+                begin: Alignment.topCenter,
                 end: Alignment.bottomRight,
-                colors: [Colors.blue.shade300, Colors.blue.shade50]),
+                colors: [Color(0xff295872), Color(0xff8dbeda)]),
           ),
           child: ListView(
             children: [
