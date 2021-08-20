@@ -26,15 +26,23 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
         padding: EdgeInsets.zero,
         children: [
           Container(
-            color: Color.fromRGBO(66, 165, 245, 1.0),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+              Color(0xff295872),
+              Color(0xff357599),
+              Color(0xff4292bf),
+              Color(0xff67a8cd),
+              Color(0xff8dbeda)
+            ])),
           ),
           ListTile(
-            title: const Text(
-              'DRA. ADA LOVELACE',
-            ),
-            subtitle: const Text('Hospital Alan Turing'),
-            trailing: Icon(Icons.account_circle_rounded, size: 40),
-          ),
+              title: const Text(
+                'DRA. ADA LOVELACE',
+              ),
+              subtitle: const Text('Hospital Alan Turing'),
+              leading: Icon(Icons.account_circle_rounded, size: 50),
+              trailing: IconButton(
+                  onPressed: () {}, icon: Icon(Icons.settings, size: 35))),
           ListTile(
             title: const Text('ÍNICIO'),
             onTap: () {
@@ -80,6 +88,7 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
 buildAppBar() {
   return AppBar(
     actions: [
+      IconButton(onPressed: () {}, icon: Icon(Icons.refresh)),
       IconButton(onPressed: () {}, icon: Icon(Icons.search)),
     ],
     title: Align(alignment: Alignment.center, child: Text('MEUS PLANTÕES')),
@@ -91,9 +100,9 @@ buildIconAppBar() {
   return FloatingActionButton(
     child: Icon(
       Icons.message_rounded,
-      size: 40,
+      size: 30,
     ),
-    backgroundColor: Colors.white60,
+    backgroundColor: Colors.blue.shade500,
     onPressed: () {},
   );
 }
@@ -108,7 +117,6 @@ buildRow() {
       Expanded(
         flex: 6,
         child: Container(
-          padding: EdgeInsets.all(10.0),
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -123,41 +131,12 @@ buildRow() {
           ),
           alignment: Alignment.topLeft,
           child: ListView(children: [
-            ListTile(
-              title: Text(
-                'PLANTAO CARDIOLOGIA',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              subtitle: Text(
-                'DRA. ADA LOVELACE',
-                style: TextStyle(color: Colors.white),
-              ),
-              trailing: Text('24', style: TextStyle(color: Colors.white)),
-            ),
-            ListTile(
-              title: Text(
-                'PLANTAO CARDIOLOGIA',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              subtitle: Text('DRA. ADA LOVELACE',
-                  style: TextStyle(color: Colors.white)),
-              trailing: Text('24', style: TextStyle(color: Colors.white)),
-            ),
-            ListTile(
-              title: Text(
-                'PLANTAO CARDIOLOGIA',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              subtitle: Text('DRA. ADA LOVELACE',
-                  style: TextStyle(color: Colors.white)),
-              trailing: Text('12', style: TextStyle(color: Colors.white)),
-            ),
+            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ADA LOVELACE',
+                '24', Colors.green.shade500),
+            buildContainerText(
+                'PLANTAO CARDIOLOGIA', 'DRA. MARIE CURIE', '12', Colors.orange),
+            buildContainerText(
+                'PLANTAO PEDIÁTRICO', 'DRA. ADA LOVELACE', '12', Colors.orange),
           ]),
           //color: Colors.blue
         ),
@@ -165,7 +144,6 @@ buildRow() {
       Expanded(
         flex: 2,
         child: Container(
-          padding: EdgeInsets.all(17.0),
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -174,33 +152,9 @@ buildRow() {
           ),
           child: ListView(
             children: [
-              ListTile(
-                title: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '09/02' + '\n' + '12:00h\n',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '09/02' + '\n' + '12:00h\n',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '09/02' + '\n' + '12:00h\n',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
+              buildContainerTipo('09/02', '12:00h'),
+              buildContainerTipo('05/02', '12:00h'),
+              buildContainerTipo('03/02', '04:00h'),
             ],
           ),
           //  color: Colors.blue
@@ -210,18 +164,65 @@ buildRow() {
   );
 }
 
-
-
-/*BoxDecoration myBoxDecoration() {
+BoxDecoration myBoxDecoration() {
   return BoxDecoration(
-    color: Colors.white,
     border: Border(
-      left: BorderSide( //                   <--- left side
-        width: 3.0,
-      ),
-      top: BorderSide( //                    <--- top side
-        width: 3.0,
+      bottom: BorderSide(
+        //                   <--- left side
+        width: 1.0,
+        color: Colors.white60,
       ),
     ),
   );
-}*/
+}
+
+buildContainerText(String plantao, String nome, String tipo, Color color) {
+  return Container(
+    decoration: myBoxDecoration(),
+    child: ListTile(
+        title: Text(
+          plantao,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        subtitle: Text(
+          nome,
+          style: TextStyle(color: Colors.white),
+        ),
+        trailing: Container(
+          padding: EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+            border: Border.all(
+              width: 3.0,
+              color: color,
+            ),
+            borderRadius: BorderRadius.all(
+                Radius.circular(30.0) //                 <--- border radius here
+                ),
+          ),
+          child: Text(
+            tipo,
+            style: TextStyle(color: Colors.white),
+          ),
+        )),
+  );
+}
+
+buildContainerTipo(String data, String hora) {
+  return Container(
+    decoration: myBoxDecoration(),
+    child: ListTile(
+      title: Align(
+        alignment: Alignment.center,
+        child: Text(
+          data,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      subtitle: Align(
+          alignment: Alignment.center,
+          child: Text(hora, style: TextStyle(color: Colors.white))),
+    ),
+  );
+}

@@ -1,15 +1,16 @@
-import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class CadastroPage extends StatefulWidget {
+  const CadastroPage({Key? key}) : super(key: key);
 
   @override
-  LoginPageState createState() => LoginPageState();
+  _CadastroPageState createState() => _CadastroPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class _CadastroPageState extends State<CadastroPage> {
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
