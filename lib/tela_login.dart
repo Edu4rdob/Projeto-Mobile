@@ -34,7 +34,7 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
           ),
           SizedBox(height: 40),
           Container(
-            margin: EdgeInsets.only(top: 0, left: 100, bottom: 5),
+            margin: EdgeInsets.only(top: 0, left: 60, bottom: 5),
             child: Text(
               'Usuário:',
               style: TextStyle(
@@ -46,13 +46,13 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
           ),
           Center(
             child: Container(
-                margin: EdgeInsets.only(left: 85, right: 85),
+                margin: EdgeInsets.only(left: 35, right: 35),
                 child: Align(
                   child: widgetTextFieldPerson(),
                 )),
           ),
           Container(
-              margin: EdgeInsets.only(top: 10, left: 100, bottom: 5),
+              margin: EdgeInsets.only(top: 10, left: 60, bottom: 5),
               child: Text(
                 'Senha: ',
                 style: TextStyle(
@@ -63,7 +63,7 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
               )),
           Center(
             child: Container(
-              margin: EdgeInsets.only(left: 85, right: 85),
+              margin: EdgeInsets.only(left: 35, right: 35),
               child: widgetTextFieldLock(),
             ),
           ),
@@ -85,7 +85,7 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
               )),
           Row(children: [
             Container(
-                margin: EdgeInsets.only(left: 3, right: 293),
+                margin: EdgeInsets.only(left: 3, right: 145),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: ElevatedButton(
