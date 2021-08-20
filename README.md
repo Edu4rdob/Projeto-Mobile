@@ -1,8 +1,8 @@
-#Projeto Hospital: Alan Turing
-##Sobre:
+# Projeto Hospital: Alan Turing
+## Sobre:
 Nós pensamos em um aplicativo que gerenciasse plantões de médicos em um determinado hospital. O método de agendamento em papel está ficando inviável e aproveitando que todo mundo possui um dispositivo movel, por que não facilitar esse gerenciamento? Esse sistema é constituído de dois tipos: os usuários (aqueles que o farão uso por um dispositivo mobile) e os assistentes (voltado na aplicação desktop). Esse projeto se concentrou nos usuários. 
 
-##Telas:
+## Telas:
 ### cadastro_pt1.dart cadastro_pt2.dart:
 Essas são telas de cadastro. Ficaram divididas em duas, sendo a primeira parte relacionada ao sistema e a segunda a dados pessoais do usuário
 
