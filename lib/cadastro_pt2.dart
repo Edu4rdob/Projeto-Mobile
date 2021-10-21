@@ -1,15 +1,15 @@
 //import 'package:cwc_flutter/form_screen.dart';
 import 'package:flutter/material.dart';
 
-class FormPage extends StatefulWidget {
-  const FormPage({Key? key}) : super(key: key);
+class FormPage2 extends StatefulWidget {
+  const FormPage2({Key? key}) : super(key: key);
 
   @override
-  _FormPagesState createState() => _FormPagesState();
+  _FormPages2State createState() => _FormPages2State();
 }
 
-class _FormPagesState extends State<FormPage> {
-  final GlobalKey<_FormPagesState> _formKey = GlobalKey<_FormPagesState>();
+class _FormPages2State extends State<FormPage2> {
+  final GlobalKey<_FormPages2State> _formKey = GlobalKey<_FormPages2State>();
 
   @override
   Widget build(BuildContext context) {

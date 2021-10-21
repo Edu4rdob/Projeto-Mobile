@@ -110,7 +110,7 @@ buildBody() {
       Expanded(
         flex: 6,
         child: Container(
-          padding: EdgeInsets.only(bottom: 15),
+          padding: EdgeInsets.only(bottom: 5),
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -154,7 +154,7 @@ buildBody() {
         ),
       ),
       Expanded(
-        flex: 2,
+        flex: 3,
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -177,9 +177,21 @@ buildBody() {
                   ),
                 ),
               )),
+              SizedBox(
+                height: 6,
+              ),
               buildContainerTipo(1),
+              SizedBox(
+                height: 6,
+              ),
               buildContainerTipo(1),
+              SizedBox(
+                height: 8,
+              ),
               buildContainerTipo(0),
+              SizedBox(
+                height: 6,
+              ),
               buildContainerTipo(1),
             ],
           ),
@@ -251,7 +263,7 @@ buildContainerTipo(int op) {
                 color: Colors.green.shade500,
               ),
               subtitle: Text('CONCLUÍDO',
-                  style: TextStyle(fontSize: 10, color: Colors.white)),
+                  style: TextStyle(fontSize: 12, color: Colors.white)),
             )),
       ),
     );

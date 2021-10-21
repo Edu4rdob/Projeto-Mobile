@@ -87,7 +87,7 @@ class _ChatState extends State<Chat> {
       actions: [
         IconButton(onPressed: () {}, icon: Icon(Icons.search)),
       ],
-      title: Align(alignment: Alignment.center, child: Text('MEUS PLANTÕES')),
+      title: Align(alignment: Alignment.center, child: Text('CHAT')),
       backgroundColor: Colors.blueGrey.shade700,
     );
   }
@@ -104,7 +104,7 @@ class _ChatState extends State<Chat> {
       margin: EdgeInsets.all(0),
       child: Column(
         children: [
-          SizedBox(height: 130),
+          SizedBox(height: 110),
           Opacity(
             opacity: 0.4,
             child: SizedBox(
