@@ -1,6 +1,12 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/chat.dart';
+import 'package:flutter_application_1/historico.dart';
+import 'package:flutter_application_1/tela_Gerenc_plantoes.dart';
+import 'package:flutter_application_1/tela_login.dart';
+import 'package:flutter_application_1/telas_plantoes_ativos.dart';
 //import 'package:flutter_application_1/TelaPlantoesAtivos.dart';
 
 class TelaPlantoesRegistrados extends StatefulWidget {
@@ -17,7 +23,7 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
-      floatingActionButton: buildIconAppBar(),
+      floatingActionButton: buildIconAppBar(context),
       drawer: buildDrawer(context),
     );
   }
@@ -41,31 +47,29 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
           ListTile(
             title: const Text('ÍNICIO'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaPlantoes()));
             },
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () {
-              Navigator.pop(context);
+           onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaGerenciarPlantoes()));
             },
           ),
           ListTile(
             title: const Text('RELATÓRIO'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => HistoricoPage()));
             },
           ),
           ListTile(
             title: const Text('SAIR'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
             },
           ),
         ],
@@ -88,14 +92,17 @@ buildAppBar() {
   );
 }
 
-buildIconAppBar() {
+buildIconAppBar(BuildContext context) {
   return FloatingActionButton(
     child: Icon(
       Icons.message_rounded,
       size: 30,
     ),
     backgroundColor: Color(0xff204559),
-    onPressed: () {},
+    onPressed: () {
+        Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Chat()));
+        },
   );
 }
 

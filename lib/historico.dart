@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/chat.dart';
+import 'package:flutter_application_1/tela_Gerenc_plantoes.dart';
+import 'package:flutter_application_1/tela_login.dart';
+import 'package:flutter_application_1/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/telas_plantoes_ativos.dart';
 
 void main() {
   runApp(
@@ -25,7 +30,7 @@ class _HistoricoPageState extends State<HistoricoPage> {
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
-      floatingActionButton: buildIconAppBar(),
+      floatingActionButton: buildIconAppBar(context),
       drawer: buildDrawer(context),
     );
   }
@@ -49,31 +54,29 @@ class _HistoricoPageState extends State<HistoricoPage> {
           ListTile(
             title: const Text('ÍNICIO'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaPlantoes()));
             },
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaGerenciarPlantoes()));
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
             onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaPlantoesRegistrados()));
             },
           ),
           ListTile(
             title: const Text('SAIR'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
             },
           ),
         ],
@@ -93,14 +96,17 @@ buildAppBar() {
   );
 }
 
-buildIconAppBar() {
+buildIconAppBar(BuildContext context) {
   return FloatingActionButton(
     child: Icon(
       Icons.message_rounded,
       size: 30,
     ),
     backgroundColor: Color(0xff295872),
-    onPressed: () {},
+    onPressed: () {
+        Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Chat()));
+        },
   );
 }
 
@@ -186,7 +192,7 @@ buildBody() {
               ),
               buildContainerTipo(1),
               SizedBox(
-                height: 8,
+                height: 6,
               ),
               buildContainerTipo(0),
               SizedBox(
@@ -259,11 +265,11 @@ buildContainerTipo(int op) {
             child: ListTile(
               title: Icon(
                 Icons.check_circle_outline,
-                size: 36,
+                size: 30,
                 color: Colors.green.shade500,
               ),
               subtitle: Text('CONCLUÍDO',
-                  style: TextStyle(fontSize: 12, color: Colors.white)),
+                  style: TextStyle(fontSize: 10, color: Colors.white)),
             )),
       ),
     );
@@ -276,7 +282,7 @@ buildContainerTipo(int op) {
             child: ListTile(
               title: Icon(
                 Icons.cancel_outlined,
-                size: 36,
+                size: 30,
                 color: Colors.red.shade700,
               ),
               subtitle: Text('CANCELADO',
