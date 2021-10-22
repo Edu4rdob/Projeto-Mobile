@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/tela_login.dart';
 
 class Troca extends StatefulWidget {
   const Troca({Key? key}) : super(key: key);
@@ -61,7 +64,10 @@ class _TrocaState extends State<Troca> {
             style: ElevatedButton.styleFrom(
                 primary: Color(0xff67a8cd),
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
+            },
             child: Text(
               'TROCAR SENHA',
               style: TextStyle(color: Colors.black),

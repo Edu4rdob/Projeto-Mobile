@@ -1,6 +1,8 @@
 import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/cadastro_pt1.dart';
+import 'package:flutter_application_1/validar_email.dart';
 
 class TelaLoginPage extends StatefulWidget {
   const TelaLoginPage({Key? key}) : super(key: key);
@@ -95,7 +97,10 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                       'Cadastre-se',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => FormPage()));
+                    },
                   ),
                 )),
             Container(
@@ -109,7 +114,10 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                     'Redefinir Senha',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ValidateEmail()));
+                  },
                 ),
               ),
             ),

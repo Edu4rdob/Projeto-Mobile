@@ -1,5 +1,8 @@
 //import 'package:cwc_flutter/form_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_application_1/tela_login.dart';
 
 class FormPage2 extends StatefulWidget {
   const FormPage2({Key? key}) : super(key: key);
@@ -15,7 +18,7 @@ class _FormPages2State extends State<FormPage2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
+      body: buildBody(context),
     );
   }
 }
@@ -29,7 +32,7 @@ buildAppBar() {
   );
 }
 
-Container buildBody() {
+Container buildBody(BuildContext context) {
   return Container(
     decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
@@ -64,7 +67,10 @@ Container buildBody() {
                           left: 20, right: 20, top: 10, bottom: 10)),
                   child: Text('CONFIRMAR',
                       style: TextStyle(color: Colors.white, fontSize: 25)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => TelaLoginPage()));
+                  },
                 ))
           ],
         ),

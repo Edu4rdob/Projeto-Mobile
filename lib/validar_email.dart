@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/troca.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class ValidateEmail extends StatefulWidget {
+  const ValidateEmail({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _ValidateEmailState createState() => _ValidateEmailState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _ValidateEmailState extends State<ValidateEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +64,10 @@ class _HomePageState extends State<HomePage> {
             style: ElevatedButton.styleFrom(
                 primary: Color(0xff67a8cd),
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Troca()));
+            },
             child: Text(
               'CONFIRMAR',
               style: TextStyle(color: Colors.black),
