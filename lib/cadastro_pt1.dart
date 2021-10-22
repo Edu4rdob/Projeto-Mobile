@@ -24,7 +24,7 @@ class _FormPagesState extends State<FormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
+      body: buildBody(context),
     );
   }
 }
