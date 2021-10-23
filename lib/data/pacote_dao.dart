@@ -7,7 +7,7 @@ class PacoteDao {
     DatabaseHelper databaseHelper = DatabaseHelper();
     Database db = await databaseHelper.db;
 
-    String sql = 'SELECT * FROM cadastro_p2';
+    String sql = 'SELECT * FROM usuario';
     final result = await db.rawQuery(sql);
 
     print(result);
