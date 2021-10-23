@@ -15,6 +15,14 @@ class FormPage2 extends StatefulWidget {
 class _FormPages2State extends State<FormPage2> {
   final GlobalKey<_FormPages2State> _formKey = GlobalKey<_FormPages2State>();
 
+  Future<List<Usuario>> listaUsuarios;
+
+  @override
+  void initState(){
+    super.initState();
+    listaUsuarios = UsuarioDao().carregarUsuarios();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
