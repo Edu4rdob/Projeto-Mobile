@@ -11,14 +11,19 @@ class FormPage extends StatefulWidget {
 class _FormPagesState extends State<FormPage> {
   final GlobalKey<_FormPagesState> _formKey = GlobalKey<_FormPagesState>();
 
+  Future<List<Usuario>> listaUsuarios;
+
+  @override
+  void initState(){
+    super.initState();
+    listaUsuarios = UsuarioDao().carregarUsuarios();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => PacoteDao().cadastroParte2(),
-      ),
     ); 
   }
 }
@@ -29,6 +34,28 @@ buildAppBar() {
         onPressed: () {}, icon: Icon(Icons.keyboard_arrow_left_outlined)),
     title: Align(alignment: Alignment(-0.2, 1.0), child: Text('CADASTRO')),
     backgroundColor: Color(0xff204559),
+  );
+}
+
+buildBody(){
+  return FutureBuilder<List<Usuario>>(
+    future: listaUsuarios,
+    builder: (context, snapshot){
+      if(snapshot.hasData){
+        return buildListView(snapshot.data);
+      } else{
+          return Center(child: CircularProgressIndicator());
+      }
+    },
+  );
+}
+
+buildListView(List<Usuario> usuarios){
+  return ListView.builder(
+    itemCount: usuarios.length,
+    itemBuilder: (BuildContext context, int i){
+      return UsuarioWidget(usuario: usuarios[i]);
+    },
   );
 }
 

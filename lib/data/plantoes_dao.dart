@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PlantoesDao {
+  
   carregarPlantoes() {
     Future<List<Plantoes>> carregarPlantoes() async {
       List<Plantoes> listaPlantoes = <Plantoes>[];
