@@ -112,7 +112,7 @@ buildBody(){
       future: listaPlantoes,
       builder: (context, snapshot){
         if(snapshot.hasData){
-          return buildRow(snaphot.data);
+          return buildRow(snapshot.data);
         }else{
           return Center(child: CircularProgressIndicator());
         }
