@@ -17,13 +17,13 @@ class TelaPlantoesRegistrados extends StatefulWidget {
 }
 
 class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
-  /*Future<List<Plantoes>> listaPlantoes;
+  Future<List<Plantoes>> listaPlantoes;
 
   @override
   void initState(){
     super.initState();
     listaPlantoes = PlantoesDao.carregarPlantoes();
-  }*/
+  }
   
   @override
   Widget build(BuildContext context) {
