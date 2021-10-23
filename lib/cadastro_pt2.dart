@@ -16,7 +16,10 @@ class _FormPagesState extends State<FormPage> {
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
-    );
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => PacoteDao().cadastroParte2(),
+      ),
+    ); 
   }
 }
 
