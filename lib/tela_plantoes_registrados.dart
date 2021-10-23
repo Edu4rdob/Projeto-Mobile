@@ -17,6 +17,14 @@ class TelaPlantoesRegistrados extends StatefulWidget {
 }
 
 class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
+  /*Future<List<Plantoes>> listaPlantoes;
+
+  @override
+  void initState(){
+    super.initState();
+    listaPlantoes = PlantoesDao.carregarPlantoes();
+  }*/
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,6 +112,24 @@ buildIconAppBar(BuildContext context) {
     },
   );
 }
+/*
+buildBody(){
+    return FutureBuilder<List<Plantoes>>{
+      future: listaPlantoes,
+      builder: (context, snapshot){
+        if(snapshot.hasData){
+          return buildRow(snaphot.data);
+        }else{
+          return Center(child: CircularProgressIndicator());
+        }
+      }
+    }
+  }
+  
+ buildRow(List<Plantoes> plantoes){
+ 
+ }
+*/
 
 buildBody() {
   return buildRow();
