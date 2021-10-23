@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+
+import 'data/plantoes.dart';
+import 'data/plantoes_dao.dart';
 //import 'package:flutter_application_1/TelaPlantoesAtivos.dart';
 
 class TelaPlantoesRegistrados extends StatefulWidget {
@@ -12,14 +15,14 @@ class TelaPlantoesRegistrados extends StatefulWidget {
 }
 
 class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
-  Future<List<Plantoes>> listaPlantoes;
+  late Future<List<Plantoes>> listaPlantoes;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    listaPlantoes = PlantoesDao.carregarPlantoes();
+    listaPlantoes = PlantoesDao().carregarPlantoes();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

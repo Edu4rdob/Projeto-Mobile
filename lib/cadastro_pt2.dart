@@ -1,5 +1,7 @@
-//import 'package:cwc_flutter/form_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'data/usuario.dart';
+import 'data/usuario_dao.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
@@ -11,10 +13,10 @@ class FormPage extends StatefulWidget {
 class _FormPagesState extends State<FormPage> {
   final GlobalKey<_FormPagesState> _formKey = GlobalKey<_FormPagesState>();
 
-  Future<List<Usuario>> listaUsuarios;
+  late Future<List<Usuario>> listaUsuarios;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     listaUsuarios = UsuarioDao().carregarUsuarios();
   }
@@ -24,7 +26,7 @@ class _FormPagesState extends State<FormPage> {
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
-    ); 
+    );
   }
 }
 
@@ -37,30 +39,28 @@ buildAppBar() {
   );
 }
 
-buildBody(){
-  return FutureBuilder<List<Usuario>>(
-    future: listaUsuarios,
-    builder: (context, snapshot){
-      if(snapshot.hasData){
-        return buildListView(snapshot.data);
-      } else{
-          return Center(child: CircularProgressIndicator());
-      }
-    },
-  );
-}
-
-buildListView(List<Usuario> usuarios){
+/*buildListView(List<Usuario> usuarios) {
   return ListView.builder(
     itemCount: usuarios.length,
-    itemBuilder: (BuildContext context, int i){
+    itemBuilder: (BuildContext context, int i) {
       return UsuarioWidget(usuario: usuarios[i]);
     },
   );
-}
+}*/
 
-Container buildBody() {
+buildBody() {
   return Container(
+    /*var listaUsuarios;
+  return FutureBuilder<List<Usuario>>(
+    future: listaUsuarios,
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return buildListView(snapshot.data);
+      } else {
+        return Center(child: CircularProgressIndicator());
+      }
+    },
+  );*/
     decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
       Color(0xff295872),
