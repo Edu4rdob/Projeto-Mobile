@@ -4,8 +4,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-
-  Database _db;
+  late Database _db;
 
   Future<Database> get db async {
     _db = await _initDB();

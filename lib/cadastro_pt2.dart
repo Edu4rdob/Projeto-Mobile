@@ -1,4 +1,3 @@
-//import 'package:cwc_flutter/form_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,10 +14,10 @@ class FormPage2 extends StatefulWidget {
 class _FormPages2State extends State<FormPage2> {
   final GlobalKey<_FormPages2State> _formKey = GlobalKey<_FormPages2State>();
 
-  Future<List<Usuario>> listaUsuarios;
+  late Future<List<Usuario>> listaUsuarios;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     listaUsuarios = UsuarioDao().carregarUsuarios();
   }
@@ -46,6 +45,17 @@ buildAppBar(BuildContext context) {
 
 Container buildBody(BuildContext context) {
   return Container(
+    /*var listaUsuarios;
+  return FutureBuilder<List<Usuario>>(
+    future: listaUsuarios,
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return buildListView(snapshot.data);
+      } else {
+        return Center(child: CircularProgressIndicator());
+      }
+    },
+  );*/
     decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
       Color(0xff295872),

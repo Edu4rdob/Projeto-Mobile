@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqlite_api.dart';
+import 'database_helper.dart';
+import 'plantoes.dart';
 
 class PlantoesDao {
-  
-  carregarPlantoes() {
+  carregarPlantoes() async {
     Future<List<Plantoes>> carregarPlantoes() async {
       List<Plantoes> listaPlantoes = <Plantoes>[];
+
+      DatabaseHelper databaseHelper = DatabaseHelper();
+      Database db = await databaseHelper.db;
+
+      String sql = 'SELECT * FROM plantoes';
+      final result = await db.rawQuery(sql);
+
+      print(result);
+
+      for (var json in result) {
+        Plantoes plantao = Plantoes.fromJson(json);
+        listaPlantoes.add(plantao);
+      }
+
+      return listaPlantoes;
     }
-
-    DatabaseHelper databaseHelper = DatabaseHelper();
-    Database db = await databaseHelper.db;
-
-    String sql = 'SELECT * FROM plantoes';
-    final result = await db.rawQuery(sql);
-
-    print(result);
-
-    for (var json in result) {
-      Plantoes plantao = Plantoes.fromJson(json);
-      listaPlantoes.add(plantao);
-    }
-
-    return listaPlantoes;
   }
 }

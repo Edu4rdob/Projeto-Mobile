@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
 class Usuario {
-  String nome;
-  String nomeUse;
-  String senha;
-  String dataNascimento;
-  String cpf;
-  String telefone;
-  String areaAtuacao;
+  late String nome;
+  late String nomeUse;
+  late String senha;
+  late String dataNascimento;
+  late String cpf;
+  late String telefone;
+  late String areaAtuacao;
 
   Usuario(
-      {this.nome,
-      this.nomeUse,
-      this.senha,
-      this.dataNascimento,
-      this.cpf,
-      this.telefone,
-      this.areaAtuacao});
+      {this.nome = '',
+      this.nomeUse = '',
+      this.senha = '',
+      this.dataNascimento = '',
+      this.cpf = '',
+      this.telefone = '',
+      this.areaAtuacao = ''});
 
   Usuario.fromJson(Map<String, dynamic> json) {
     nome = json['nome'];
