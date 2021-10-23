@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -7,7 +6,7 @@ import 'package:flutter_application_1/historico.dart';
 import 'package:flutter_application_1/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/tela_login.dart';
 import 'package:flutter_application_1/telas_plantoes_ativos.dart';
-//import 'package:flutter_application_1/TelaPlantoesAtivos.dart';
+import 'package:flutter_application_1/tela-configuracao-usu.dart';
 
 class TelaPlantoesRegistrados extends StatefulWidget {
   const TelaPlantoesRegistrados({Key? key}) : super(key: key);
@@ -53,9 +52,9 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-           onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaGerenciarPlantoes()));
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TelaGerenciarPlantoes()));
             },
           ),
           ListTile(
@@ -100,9 +99,9 @@ buildIconAppBar(BuildContext context) {
     ),
     backgroundColor: Color(0xff204559),
     onPressed: () {
-        Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Chat()));
-        },
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Chat()));
+    },
   );
 }
 
