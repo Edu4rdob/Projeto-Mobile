@@ -112,7 +112,7 @@ buildIconAppBar(BuildContext context) {
     },
   );
 }
-/*
+
 buildBody(){
     return FutureBuilder<List<Plantoes>>{
       future: listaPlantoes,
@@ -125,17 +125,8 @@ buildBody(){
       }
     }
   }
-  
- buildRow(List<Plantoes> plantoes){
- 
- }
-*/
 
-buildBody() {
-  return buildRow();
-}
-
-buildRow() {
+buildRow(List<Plantoes> plantoes) {
   return Row(
     children: <Widget>[
       Expanded(
