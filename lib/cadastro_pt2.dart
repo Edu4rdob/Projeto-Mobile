@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/cadastro_pt1.dart';
 import 'package:flutter_application_1/tela_login.dart';
 
+import 'data/usuario.dart';
+import 'data/usuario_dao.dart';
+
 class FormPage2 extends StatefulWidget {
   const FormPage2({Key? key}) : super(key: key);
 
@@ -35,9 +38,10 @@ buildAppBar(BuildContext context) {
   return AppBar(
     leading: IconButton(
         onPressed: () {
-           Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => FormPage()));
-        }, icon: Icon(Icons.keyboard_arrow_left_outlined)),
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => FormPage()));
+        },
+        icon: Icon(Icons.keyboard_arrow_left_outlined)),
     title: Align(alignment: Alignment(-0.2, 1.0), child: Text('CADASTRO')),
     backgroundColor: Color(0xff204559),
   );
