@@ -113,20 +113,11 @@ buildIconAppBar(BuildContext context) {
   );
 }
 
-buildBody(){
-    return FutureBuilder<List<Plantoes>>{
-      future: listaPlantoes,
-      builder: (context, snapshot){
-        if(snapshot.hasData){
-          return buildRow(snapshot.data);
-        }else{
-          return Center(child: CircularProgressIndicator());
-        }
-      }
-    }
-  }
+buildBody() {
+  return buildRow();
+}
 
-buildRow(List<Plantoes> plantoes) {
+buildRow() {
   return Row(
     children: <Widget>[
       Expanded(
