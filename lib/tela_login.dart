@@ -2,6 +2,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/cadastro_pt1.dart';
+import 'package:flutter_application_1/telas_plantoes_ativos.dart';
 import 'package:flutter_application_1/validar_email.dart';
 
 class TelaLoginPage extends StatefulWidget {
@@ -78,11 +79,14 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                       primary: Color(0xff204559),
                       padding: EdgeInsets.only(
                           left: 20, right: 20, top: 10, bottom: 10)),
-                  onPressed: () {},
                   child: Text(
                     'ENTRAR',
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
+                  onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => TelaPlantoes()));
+                    },
                 )),
               )),
           Row(children: [
