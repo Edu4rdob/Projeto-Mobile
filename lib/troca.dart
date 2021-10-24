@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_application_1/tela_login.dart';
+import 'package:flutter_application_1/validar_email.dart';
 
 class Troca extends StatefulWidget {
   const Troca({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _TrocaState extends State<Troca> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
@@ -30,6 +31,17 @@ class _TrocaState extends State<Troca> {
       ),
     );
   }
+  buildAppBar(BuildContext context) {
+  return AppBar(
+    leading: IconButton(
+        onPressed: () {
+          Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => ValidateEmail()));
+        }, icon: Icon(Icons.keyboard_arrow_left_outlined)),
+    title: Align(alignment: Alignment(-0.2, 1.0), child: Text('NOVA SENHA')),
+    backgroundColor: Color(0xff204559),
+  );
+}
 
   buildBody() {
     return ListView(

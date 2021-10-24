@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_application_1/cadastro_pt1.dart';
 import 'package:flutter_application_1/tela_login.dart';
 
 class FormPage2 extends StatefulWidget {
@@ -17,16 +18,19 @@ class _FormPages2State extends State<FormPage2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: buildBody(context),
     );
   }
 }
 
-buildAppBar() {
+buildAppBar(BuildContext context) {
   return AppBar(
     leading: IconButton(
-        onPressed: () {}, icon: Icon(Icons.keyboard_arrow_left_outlined)),
+        onPressed: () {
+           Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => FormPage()));
+        }, icon: Icon(Icons.keyboard_arrow_left_outlined)),
     title: Align(alignment: Alignment(-0.2, 1.0), child: Text('CADASTRO')),
     backgroundColor: Color(0xff204559),
   );
