@@ -31,7 +31,7 @@ Elas prestam a verificação por email e a mudança de senha caso o usuário cli
 ### - Alan
 ### - Diogo
 ### - Eduardo Carlos
-### - Eline Clis
+### - Elaine Clis
 ### - Isabel
 ### - Jeycy
 ### - Mariana Cris
