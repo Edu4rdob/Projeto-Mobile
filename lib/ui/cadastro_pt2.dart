@@ -1,25 +1,28 @@
-//import 'package:cwc_flutter/form_screen.dart';
-
+import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_application_1/cadastro_pt2.dart';
-import 'package:flutter_application_1/tela_login.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
+import 'package:flutter_application_1/ui/cadastro_pt1.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
 
-class FormPage extends StatefulWidget {
-  const FormPage({Key? key}) : super(key: key);
+class FormPage2 extends StatefulWidget {
+  const FormPage2({Key? key}) : super(key: key);
 
   @override
-  _FormPagesState createState() => _FormPagesState();
+  _FormPages2State createState() => _FormPages2State();
 }
 
-class _FormPagesState extends State<FormPage> {
-  String _nome = '';
-  String _nomeUsuario = '';
-  String _email = '';
-  String _senha = '';
+class _FormPages2State extends State<FormPage2> {
+  final GlobalKey<_FormPages2State> _formKey = GlobalKey<_FormPages2State>();
 
-  final GlobalKey<_FormPagesState> _formKey = GlobalKey<_FormPagesState>();
+  Future<List<Usuario>>? listaUsuarios;
+
+  @override
+  void initState() {
+    super.initState();
+    listaUsuarios = UsuarioDao().carregarUsuarios();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +38,9 @@ buildAppBar(BuildContext context) {
     leading: IconButton(
         onPressed: () {
           Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => TelaLoginPage()));
-        }, icon: Icon(Icons.keyboard_arrow_left_outlined)),
+              .push(MaterialPageRoute(builder: (context) => FormPage()));
+        },
+        icon: Icon(Icons.keyboard_arrow_left_outlined)),
     title: Align(alignment: Alignment(-0.2, 1.0), child: Text('CADASTRO')),
     backgroundColor: Color(0xff204559),
   );
@@ -44,6 +48,17 @@ buildAppBar(BuildContext context) {
 
 Container buildBody(BuildContext context) {
   return Container(
+    /*var listaUsuarios;
+  return FutureBuilder<List<Usuario>>(
+    future: listaUsuarios,
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        return buildListView(snapshot.data);
+      } else {
+        return Center(child: CircularProgressIndicator());
+      }
+    },
+  );*/
     decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
       Color(0xff295872),
@@ -60,26 +75,26 @@ Container buildBody(BuildContext context) {
           children: <Widget>[
             buildImage(),
             SizedBox(height: 70),
-            buildNameField(),
+            builDataField(),
             SizedBox(height: 10),
-            buildNomeUsuarioField(),
+            buildCpfField(),
             SizedBox(height: 10),
-            buildemailField(),
+            buildTelefoneField(),
             SizedBox(height: 10),
-            buildSenhaField(),
+            buildAreaField(),
             SizedBox(height: 50),
             Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.center,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: Color(0xff204559),
                       padding: EdgeInsets.only(
                           left: 20, right: 20, top: 10, bottom: 10)),
-                  child: Text('Proximo',
+                  child: Text('CONFIRMAR',
                       style: TextStyle(color: Colors.white, fontSize: 25)),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => FormPage2()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => TelaLoginPage()));
                   },
                 ))
           ],
@@ -89,10 +104,22 @@ Container buildBody(BuildContext context) {
   );
 }
 
-Widget buildNameField() {
+Widget builDataField() {
   return TextFormField(
     decoration: InputDecoration(
-      labelText: 'Digite seu nome',
+        labelText: 'Digite a data de nascimento',
+        enabledBorder: OutlineInputBorder(
+            borderRadius: (BorderRadius.all(Radius.circular(5)))),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: Colors.blue)),
+        prefixIcon: Icon(Icons.date_range_outlined)),
+  );
+}
+
+Widget buildCpfField() {
+  return TextFormField(
+    decoration: InputDecoration(
+      labelText: 'Digite seu CPF',
       enabledBorder: OutlineInputBorder(
           borderRadius: (BorderRadius.all(Radius.circular(5)))),
       focusedBorder: OutlineInputBorder(
@@ -102,41 +129,28 @@ Widget buildNameField() {
   );
 }
 
-Widget buildNomeUsuarioField() {
+Widget buildTelefoneField() {
   return TextFormField(
     decoration: InputDecoration(
-      labelText: 'Digite seu Usuário',
+      labelText: 'Digite seu telefone',
       enabledBorder: OutlineInputBorder(
           borderRadius: (BorderRadius.all(Radius.circular(5)))),
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 2, color: Colors.blue)),
-      prefixIcon: Icon(Icons.account_circle_sharp),
+      prefixIcon: Icon(Icons.phone_android_outlined),
     ),
   );
 }
 
-Widget buildemailField() {
+Widget buildAreaField() {
   return TextFormField(
     decoration: InputDecoration(
-      labelText: 'Digite sua Senha',
+      labelText: 'Digite sua área de atuação',
       enabledBorder: OutlineInputBorder(
           borderRadius: (BorderRadius.all(Radius.circular(5)))),
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 2, color: Colors.blue)),
-      prefixIcon: Icon(Icons.lock),
-    ),
-  );
-}
-
-Widget buildSenhaField() {
-  return TextFormField(
-    decoration: InputDecoration(
-      labelText: 'Digite novamente sua senha',
-      enabledBorder: OutlineInputBorder(
-          borderRadius: (BorderRadius.all(Radius.circular(5)))),
-      focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: 2, color: Colors.blue)),
-      prefixIcon: Icon(Icons.lock),
+      prefixIcon: Icon(Icons.medical_services_outlined),
     ),
   );
 }

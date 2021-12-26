@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_application_1/tela_Gerenc_plantoes.dart';
-import 'package:flutter_application_1/tela_login.dart';
-import 'package:flutter_application_1/tela_plantoes_registrados.dart';
-import 'package:flutter_application_1/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
+import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
 
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
@@ -54,22 +54,22 @@ class _ChatState extends State<Chat> {
           ListTile(
             title: const Text('ÍNICIO'),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => TelaPlantoes()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaPlantoes()));
             },
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => TelaGerenciarPlantoes()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TelaGerenciarPlantoes()));
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => TelaPlantoesRegistrados()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TelaPlantoesRegistrados()));
             },
           ),
           ListTile(
@@ -81,8 +81,8 @@ class _ChatState extends State<Chat> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => TelaLoginPage()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
             },
           ),
         ],

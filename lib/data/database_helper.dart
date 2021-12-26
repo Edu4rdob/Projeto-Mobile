@@ -4,29 +4,29 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  late Database _db;
+  Database? _db;
 
   Future<Database> get db async {
     _db = await _initDB();
-    return _db;
+    return _db!;
   }
 
   _initDB() async {
     String databasePath = await getDatabasesPath();
-    String path = join(databasePath, "banco.db");
+    String path = join(databasePath, "hospital.db");
 
     print(path);
 
-    var db = await openDatabase(
+    var database = await openDatabase(
       path,
       version: 1,
-      onCreate: _onCreate,
+      onCreate: onCreate,
     );
 
-    return db;
+    return database;
   }
 
-  Future<FutureOr<void>> _onCreate(Database db, int version) async {
+  onCreate(Database db, int version) async {
     String sql =
         'create table usuario (nome varchar(100), nome_use varchar(100), senha varchar(8), data_nascimento varchar(10), cpf varchar(11) PRIMARY KEY, telefone varchar(12), area_atuacao varchar(100));';
     await db.execute(sql);

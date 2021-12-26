@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_application_1/chat.dart';
-import 'package:flutter_application_1/data/plantoes.dart';
-import 'package:flutter_application_1/historico.dart';
-import 'package:flutter_application_1/tela_login.dart';
-import 'package:flutter_application_1/tela_plantoes_registrados.dart';
-import 'package:flutter_application_1/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/ui/chat.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
+import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+
+import 'historico.dart';
 
 class TelaGerenciarPlantoes extends StatefulWidget {
   const TelaGerenciarPlantoes({Key? key}) : super(key: key);

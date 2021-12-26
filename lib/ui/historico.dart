@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_application_1/chat.dart';
-import 'package:flutter_application_1/tela_Gerenc_plantoes.dart';
-import 'package:flutter_application_1/tela_login.dart';
-import 'package:flutter_application_1/tela_plantoes_registrados.dart';
-import 'package:flutter_application_1/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
+import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+
+import 'chat.dart';
 
 void main() {
   runApp(
@@ -61,15 +62,15 @@ class _HistoricoPageState extends State<HistoricoPage> {
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaGerenciarPlantoes()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TelaGerenciarPlantoes()));
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaPlantoesRegistrados()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TelaPlantoesRegistrados()));
             },
           ),
           ListTile(
@@ -104,9 +105,9 @@ buildIconAppBar(BuildContext context) {
     ),
     backgroundColor: Color(0xff295872),
     onPressed: () {
-        Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Chat()));
-        },
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Chat()));
+    },
   );
 }
 

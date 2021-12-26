@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_application_1/tela_login.dart';
-import 'package:flutter_application_1/troca.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
+import 'package:flutter_application_1/ui/validar_email.dart';
 
-class ValidateEmail extends StatefulWidget {
-  const ValidateEmail({Key? key}) : super(key: key);
+class Troca extends StatefulWidget {
+  const Troca({Key? key}) : super(key: key);
 
   @override
-  _ValidateEmailState createState() => _ValidateEmailState();
+  _TrocaState createState() => _TrocaState();
 }
 
-class _ValidateEmailState extends State<ValidateEmail> {
+class _TrocaState extends State<Troca> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,17 +31,19 @@ class _ValidateEmailState extends State<ValidateEmail> {
       ),
     );
   }
+
   buildAppBar(BuildContext context) {
-  return AppBar(
-    leading: IconButton(
-        onPressed: () {
-          Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => TelaLoginPage()));
-        }, icon: Icon(Icons.keyboard_arrow_left_outlined)),
-    title: Align(alignment: Alignment(-0.2, 1.0), child: Text('NOVA SENHA')),
-    backgroundColor: Color(0xff204559),
-  );
-}
+    return AppBar(
+      leading: IconButton(
+          onPressed: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => ValidateEmail()));
+          },
+          icon: Icon(Icons.keyboard_arrow_left_outlined)),
+      title: Align(alignment: Alignment(-0.2, 1.0), child: Text('NOVA SENHA')),
+      backgroundColor: Color(0xff204559),
+    );
+  }
 
   buildBody() {
     return ListView(
@@ -63,13 +65,13 @@ class _ValidateEmailState extends State<ValidateEmail> {
           ),
           SizedBox(height: 30),
           TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(labelText: 'Email'),
+            keyboardType: TextInputType.visiblePassword,
+            decoration: InputDecoration(labelText: 'Nova Senha'),
           ),
           SizedBox(height: 30),
           TextFormField(
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(labelText: 'CPF'),
+            keyboardType: TextInputType.visiblePassword,
+            decoration: InputDecoration(labelText: 'Repita a Nova Senha'),
           ),
           SizedBox(height: 30),
           ElevatedButton(
@@ -77,11 +79,11 @@ class _ValidateEmailState extends State<ValidateEmail> {
                 primary: Color(0xff67a8cd),
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Troca()));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
             },
             child: Text(
-              'CONFIRMAR',
+              'TROCAR SENHA',
               style: TextStyle(color: Colors.black),
             ),
           ),

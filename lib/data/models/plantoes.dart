@@ -4,14 +4,14 @@ class Plantoes {
   late int id;
   late String nome;
   late String dr;
-  late int duracao;
+  late String duracao;
   late String data;
   late String hora;
 
   Plantoes(
       {this.nome = '',
       this.dr = '',
-      this.duracao = 0,
+      this.duracao = '',
       this.data = '',
       this.hora = ''});
 

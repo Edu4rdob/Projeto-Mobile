@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_application_1/chat.dart';
-import 'package:flutter_application_1/historico.dart';
-import 'package:flutter_application_1/tela_Gerenc_plantoes.dart';
-import 'package:flutter_application_1/tela_login.dart';
-import 'package:flutter_application_1/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/data/dao/plantoes_dao.dart';
+import 'package:flutter_application_1/data/models/plantoes.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
+import 'package:flutter_application_1/ui/chat.dart';
+import 'package:flutter_application_1/ui/historico.dart';
+import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
+import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
 
 class TelaPlantoes extends StatefulWidget {
   const TelaPlantoes({Key? key}) : super(key: key);
@@ -15,17 +18,28 @@ class TelaPlantoes extends StatefulWidget {
 }
 
 class _TelaPlantoesState extends State<TelaPlantoes> {
+  Future<List<Plantoes>>? plantoes;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    plantoes = PlantoesDao().carregarPlantoes();
+  }
+
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
+
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
       floatingActionButton: buildIconAppBar(context),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -41,8 +55,8 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
             ])),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                'DRA. ${usuario.nome}',
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),
@@ -51,16 +65,15 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaGerenciarPlantoes()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TelaGerenciarPlantoes()));
             },
-            
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaPlantoesRegistrados()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TelaPlantoesRegistrados()));
             },
           ),
           ListTile(
@@ -102,8 +115,8 @@ buildIconAppBar(BuildContext context) {
     ),
     backgroundColor: Color(0xff295872),
     onPressed: () {
-       Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Chat()));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Chat()));
     },
   );
 }

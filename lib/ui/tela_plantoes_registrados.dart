@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_application_1/chat.dart';
-import 'package:flutter_application_1/data/plantoes.dart';
-import 'package:flutter_application_1/historico.dart';
-import 'package:flutter_application_1/tela_Gerenc_plantoes.dart';
-import 'package:flutter_application_1/tela_login.dart';
-import 'package:flutter_application_1/telas_plantoes_ativos.dart';
-import 'package:flutter_application_1/tela-configuracao-usu.dart';
-import 'package:flutter_application_1/data/plantoes_dao.dart';
+import 'package:flutter_application_1/data/dao/plantoes_dao.dart';
+import 'package:flutter_application_1/data/models/plantoes.dart';
+import 'package:flutter_application_1/ui/chat.dart';
+import 'package:flutter_application_1/ui/historico.dart';
+import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
+import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
 
 class TelaPlantoesRegistrados extends StatefulWidget {
   const TelaPlantoesRegistrados({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class TelaPlantoesRegistrados extends StatefulWidget {
 }
 
 class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
-  late Future<List<Plantoes>> listaPlantoes;
+  Future<List<Plantoes>>? listaPlantoes;
 
   @override
   void initState() {
