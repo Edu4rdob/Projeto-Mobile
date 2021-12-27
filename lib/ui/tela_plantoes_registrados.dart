@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_application_1/data/dao/plantoes_dao.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/data/models/plantoes.dart';
 import 'package:flutter_application_1/ui/chat.dart';
 import 'package:flutter_application_1/ui/historico.dart';
@@ -58,30 +59,50 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
                   onPressed: () {}, icon: Icon(Icons.settings, size: 35))),
           ListTile(
             title: const Text('ÍNICIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-plantoes-ativos',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaGerenciarPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-gerenciar-plantoes',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HistoricoPage()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/historico',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('SAIR'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
+            onTap: () async {
+              Navigator.pushNamed(
+                 context,
+                '/login'
+              );
             },
           ),
         ],

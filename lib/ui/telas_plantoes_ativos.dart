@@ -65,17 +65,29 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
                   onPressed: () {}, icon: Icon(Icons.settings, size: 35))),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaGerenciarPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-gerenciar-plantoes',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaPlantoesRegistrados()));
-            },
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-plantoes-registrados',
+                arguments: data,
+              );
+            }
           ),
           ListTile(
             title: const Text('RELATÓRIO'),
@@ -84,7 +96,7 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
                   .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
 
               Navigator.pushNamed(
-                context,
+                 context,
                 '/historico',
                 arguments: data,
               );
@@ -92,9 +104,11 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
           ),
           ListTile(
             title: const Text('SAIR'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
+           onTap: () async {
+              Navigator.pushNamed(
+                 context,
+                '/login'
+              );
             },
           ),
         ],
