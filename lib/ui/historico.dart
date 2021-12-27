@@ -34,7 +34,7 @@ class _HistoricoPageState extends State<HistoricoPage> {
     Usuario usuario = argumentUsuario;
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
+      body: buildBody(usuario),
       floatingActionButton: buildIconAppBar(context),
       drawer: buildDrawer(context, usuario),
     );
@@ -135,7 +135,7 @@ buildIconAppBar(BuildContext context) {
   );
 }
 
-buildBody() {
+buildBody(Usuario usuario) {
   return Row(
     children: <Widget>[
       Expanded(
@@ -172,13 +172,13 @@ buildBody() {
                 ),
               ),
             ),
-            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA ADA', '24',
+            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}', '24',
                 Colors.orange, '09/12\n'),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA ADA', '12',
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12',
                 Colors.green.shade500, '08/12\n'),
-            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA ADA', '12',
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12',
                 Colors.green.shade500, '07/10\n'),
-            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA ADA', '12',
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12',
                 Colors.green.shade500, '07/10\n'),
           ]),
           //color: Colors.blue

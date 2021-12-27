@@ -35,7 +35,7 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
 
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
+      body: buildBody(usuario),
       floatingActionButton: buildIconAppBar(context),
       drawer: buildDrawer(context, usuario),
     );
@@ -139,11 +139,11 @@ buildIconAppBar(BuildContext context) {
   );
 }
 
-buildBody() {
-  return buildRow();
+buildBody(Usuario usuario) {
+  return buildRow(usuario);
 }
 
-buildRow() {
+buildRow(Usuario usuario) {
   return Row(
     children: <Widget>[
       Expanded(
@@ -163,23 +163,23 @@ buildRow() {
           ),
           alignment: Alignment.topLeft,
           child: ListView(children: [
-            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ADA LOVELACE',
+            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}',
                 '24', Colors.green.shade500),
             buildContainerText(
-                'PLANTAO CARDIOLOGIA', 'DRA. MARIE CURIE', '12', Colors.orange),
+                'PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12', Colors.orange),
             buildContainerText(
-                'PLANTAO PEDIÁTRICO', 'DRA. ADA LOVELACE', '12', Colors.orange),
+                'PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12', Colors.orange),
             buildContainerText(
-                'PLANTAO OBSTÉTRICO', 'DRA. ADA LOVELACE', '12', Colors.orange),
-            buildContainerText('PLANTAO PEDIATRICO', 'DRA. MARIE CURE', '24',
+                'PLANTAO OBSTÉTRICO', 'DRA. ${usuario.nome}', '12', Colors.orange),
+            buildContainerText('PLANTAO PEDIATRICO', 'DRA. ${usuario.nome}', '24',
                 Colors.green.shade500),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ADA LOVELACE', '12',
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12',
                 Colors.green.shade500),
             buildContainerText(
-                'PLANTAO CARDIOLOGIA', 'DR TOM JOBIM', '12', Colors.orange),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DR MICHAEL JACKSON',
+                'PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12', Colors.orange),
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
                 '12', Colors.green.shade500),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DR MICHAEL JACKSON',
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
                 '12', Colors.green.shade500),
           ]),
         ),
