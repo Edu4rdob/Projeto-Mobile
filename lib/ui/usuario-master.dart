@@ -15,21 +15,41 @@ class UsuarioMaster extends StatefulWidget {
 class _UsuarioMasterState extends State<UsuarioMaster> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _nomePlantao = TextEditingController();
+  int selectedRadioTile = 0;
   @override
+  void initState() {
+    super.initState();
+    selectedRadioTile = 0;
+  }
+
+  setSelectedRadioTile(int val) {
+    setState(() {
+      selectedRadioTile = val;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
       drawer: buildDrawer(context),
-      body: buildBody(),
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Color(0xff295872),
+          Color(0xff357599),
+          Color(0xff4292bf),
+          Color(0xff67a8cd),
+          Color(0xff8dbeda)
+        ])),
+        child: Center(
+          child: buildBody(),
+        ),
+      ),
     );
   }
 
   buildAppBar() {
     return AppBar(
-      actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.refresh)),
-        IconButton(onPressed: () {}, icon: Icon(Icons.search)),
-      ],
       title:
           Align(alignment: Alignment.center, child: Text('Cadastrar Plantões')),
       backgroundColor: Color(0xff204559),
@@ -78,6 +98,22 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
         key: _formKey,
         child: Column(
           children: [
+            SizedBox(
+              width: 150,
+              height: 150,
+              child: Image.asset('ALAN_TURING.png'),
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'ID do plantão:'),
+              keyboardType: TextInputType.number,
+              controller: _nomePlantao,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Campo obrigatório!';
+                }
+                return null;
+              },
+            ),
             TextFormField(
               decoration: InputDecoration(labelText: 'Nome do plantão:'),
               controller: _nomePlantao,
@@ -87,6 +123,70 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
                 }
                 return null;
               },
+            ),
+            TextFormField(
+              decoration: InputDecoration(
+                  labelText: 'Doutor(a) responsável do plantão:'),
+              controller: _nomePlantao,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Campo obrigatório!';
+                }
+                return null;
+              },
+            ),
+            RadioListTile(
+                value: 12,
+                groupValue: selectedRadioTile,
+                title: Text('12h'),
+                activeColor: Colors.blue,
+                onChanged: (val) {
+                  setSelectedRadioTile(0);
+                }),
+            RadioListTile(
+                value: 24,
+                groupValue: 33,
+                activeColor: Colors.blue,
+                title: Text('24h'),
+                onChanged: (val) {
+                  setSelectedRadioTile(1);
+                }),
+            Divider(
+              height: 20,
+              color: Colors.grey[900],
+            ),
+            RaisedButton(
+              child: Row(children: [
+                Text('Data do plantão'),
+              ]),
+              onPressed: () {
+                showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2001),
+                    lastDate: DateTime(2022));
+              },
+            ),
+            Divider(
+              height: 20,
+              color: Colors.grey[900],
+            ),
+            RaisedButton(
+              child: Row(children: [
+                Text('hora do plantão'),
+              ]),
+              onPressed: () {
+                showTimePicker(
+                    context: context,
+                    initialTime: const TimeOfDay(hour: 0, minute: 0));
+              },
+            ),
+            Divider(
+              height: 20,
+              color: Colors.grey[900],
+            ),
+            SizedBox(
+              height: 40,
             ),
             ElevatedButton(
               onPressed: () {
