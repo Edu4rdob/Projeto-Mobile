@@ -5,6 +5,7 @@ import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
 import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
 
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
@@ -16,10 +17,12 @@ class Chat extends StatefulWidget {
 class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
     return Scaffold(
       //appBar: buildAppBar(),
       appBar: buildAppBar(),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
@@ -36,7 +39,7 @@ class _ChatState extends State<Chat> {
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -45,8 +48,8 @@ class _ChatState extends State<Chat> {
             color: Color.fromRGBO(66, 165, 245, 1.0),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                'DRA. ${usuario.nome}',
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),

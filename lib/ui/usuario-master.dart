@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
 
 import 'historico.dart';
 
@@ -17,9 +18,11 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
   final _nomePlantao = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
     return Scaffold(
       appBar: buildAppBar(),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
       body: buildBody(),
     );
   }
@@ -36,7 +39,7 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -52,8 +55,8 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
             ])),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                 'DRA. ${usuario.nome}'
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),

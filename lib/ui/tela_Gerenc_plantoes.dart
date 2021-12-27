@@ -5,6 +5,7 @@ import 'package:flutter_application_1/ui/chat.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
 import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
 
 import 'historico.dart';
 
@@ -18,15 +19,17 @@ class TelaGerenciarPlantoes extends StatefulWidget {
 class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
       floatingActionButton: buildIconAppBar(context),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -35,8 +38,8 @@ class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
             color: Color.fromRGBO(66, 165, 245, 1.0),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                'DRA. ${usuario.nome}',
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),
