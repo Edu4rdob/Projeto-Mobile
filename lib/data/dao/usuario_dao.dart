@@ -22,7 +22,7 @@ class UsuarioDao {
     return listaUsuarios;
   }
 
-  Future<Usuario> login(
+  Future<Usuario> buscarUsuario(
       {required String usuario, required String senha}) async {
     List<Usuario> usuarios = [];
 

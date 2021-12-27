@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_application_1/data/dao/plantoes_dao.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/data/models/plantoes.dart';
 import 'package:flutter_application_1/data/models/usuario.dart';
 import 'package:flutter_application_1/ui/chat.dart';
@@ -78,9 +79,15 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
           ),
           ListTile(
             title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HistoricoPage()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                context,
+                '/historico',
+                arguments: data,
+              );
             },
           ),
           ListTile(

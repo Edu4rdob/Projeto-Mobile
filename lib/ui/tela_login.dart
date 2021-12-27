@@ -101,7 +101,7 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                         print(senha);
 
                         final data = await UsuarioDao()
-                            .login(usuario: nome, senha: senha);
+                            .buscarUsuario(usuario: nome, senha: senha);
 
                         print(data);
 
