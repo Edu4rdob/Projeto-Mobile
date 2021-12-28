@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class Plantoes {
   late int id;
   late String nome;
-  late String dr;
+  late String? cpf;
   late String duracao;
   late String data;
   late String hora;
 
   Plantoes(
       {this.nome = '',
-      this.dr = '',
+      this.cpf = '',
       this.duracao = '',
       this.data = '',
       this.hora = ''});
@@ -18,7 +18,7 @@ class Plantoes {
   Plantoes.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nome = json['nome'];
-    dr = json['dr'];
+    cpf = json['cpf_FK'];
     duracao = json['duracao'];
     data = json['data'];
     hora = json['hora'];
@@ -28,7 +28,7 @@ class Plantoes {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['nome'] = this.nome;
-    data['dr'] = this.dr;
+    data['cpf_FK'] = this.cpf;
     data['duracao'] = this.duracao;
     data['data'] = this.data;
     data['hora'] = this.hora;

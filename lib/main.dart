@@ -17,7 +17,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: UsuarioMaster(),
+      home: TelaLoginPage(),
       routes: {
         '/login': (context) => const TelaLoginPage(),
         '/cadastro-pt1': (context) => const FormPage(),

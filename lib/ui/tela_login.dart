@@ -101,15 +101,39 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                         print(senha);
 
                         final data = await UsuarioDao()
-                            .login(usuario: nome, senha: senha);
+                            .login(usuarionome: nome, senhausu: senha);
 
-                        print(data);
-
-                        Navigator.pushNamed(
-                          context,
-                          '/tela-plantoes-ativos',
-                          arguments: data,
-                        );
+                        if (data.isNotEmpty) {
+                          if (data[0].nomeUse == 'usu_assistente' &&
+                              data[0].senha == '12345678') {
+                            Navigator.pushNamed(
+                              context,
+                              '/usuario-master',
+                              arguments: data[0],
+                            );
+                          } else {
+                            Navigator.pushNamed(
+                              context,
+                              '/tela-plantoes-ativos',
+                              arguments: data[0],
+                            );
+                          }
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                              title: Text('Erro: usuario não encontrado!'),
+                              actions: [
+                                CupertinoDialogAction(
+                                  child: Text('Ok!'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                       }
                     },
                   )),

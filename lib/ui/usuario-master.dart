@@ -99,14 +99,13 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
         child: Column(
           children: [
             SizedBox(
-              width: 150,
-              height: 150,
+              width: 100,
+              height: 100,
               child: Image.asset('ALAN_TURING.png'),
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'ID do plantão:'),
               keyboardType: TextInputType.number,
-              controller: _nomePlantao,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Campo obrigatório!';
@@ -116,7 +115,6 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'Nome do plantão:'),
-              controller: _nomePlantao,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Campo obrigatório!';
@@ -127,7 +125,6 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
             TextFormField(
               decoration: InputDecoration(
                   labelText: 'Doutor(a) responsável do plantão:'),
-              controller: _nomePlantao,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Campo obrigatório!';
@@ -168,7 +165,7 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
               },
             ),
             Divider(
-              height: 20,
+              height: 10,
               color: Colors.grey[900],
             ),
             RaisedButton(
@@ -186,12 +183,11 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
               color: Colors.grey[900],
             ),
             SizedBox(
-              height: 40,
+              height: 20,
             ),
             ElevatedButton(
               onPressed: () {
                 if (!_formKey.currentState!.validate()) return;
-                print(_nomePlantao.text);
               },
               child: Text('Adicionar'),
             ),

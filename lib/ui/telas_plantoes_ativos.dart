@@ -23,13 +23,13 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    plantoes = PlantoesDao().carregarPlantoes();
   }
 
   @override
   Widget build(BuildContext context) {
     dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
     Usuario usuario = argumentUsuario;
+    plantoes = PlantoesDao().carregarPlantoes(usuario.cpf);
 
     return Scaffold(
       appBar: buildAppBar(),
