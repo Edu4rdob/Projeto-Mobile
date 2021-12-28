@@ -54,12 +54,12 @@ class _ChatState extends State<Chat> {
             title: const Text('ÍNICIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
               Navigator.pushNamed(
                 context,
                 '/tela-plantoes-ativos',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),
@@ -67,12 +67,12 @@ class _ChatState extends State<Chat> {
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
               Navigator.pushNamed(
                 context,
                 '/tela-gerenciar-plantoes',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),
@@ -80,12 +80,12 @@ class _ChatState extends State<Chat> {
             title: const Text('PLANTÕES GERENCIADOS'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
               Navigator.pushNamed(
                 context,
                 '/tela-plantoes-registrados',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),
@@ -93,12 +93,12 @@ class _ChatState extends State<Chat> {
             title: const Text('RELATÓRIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
               Navigator.pushNamed(
                 context,
                 '/historico',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),

@@ -60,12 +60,12 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             title: const Text('ÍNICIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
               Navigator.pushNamed(
                 context,
                 '/tela-plantoes-ativos',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),
@@ -73,12 +73,12 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
               Navigator.pushNamed(
                 context,
                 '/tela-gerenciar-plantoes',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),
@@ -86,12 +86,12 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             title: const Text('RELATÓRIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
               Navigator.pushNamed(
                 context,
                 '/historico',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),

@@ -30,7 +30,6 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
   Widget build(BuildContext context) {
     dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
     Usuario usuario = argumentUsuario;
-    plantoes = PlantoesDao().carregarPlantoes(usuario.cpf);
 
     return Scaffold(
       appBar: buildAppBar(),
@@ -67,37 +66,39 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
-
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
+              print('printando o data:$data');
+              print(usuario.nome);
+              print(usuario.senha);
               Navigator.pushNamed(
                 context,
                 '/tela-gerenciar-plantoes',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),
           ListTile(
               title: const Text('PLANTÕES GERENCIADOS'),
               onTap: () async {
-                final data = await UsuarioDao()
-                    .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                final data = await UsuarioDao().login(
+                    usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
                 Navigator.pushNamed(
                   context,
                   '/tela-plantoes-registrados',
-                  arguments: data,
+                  arguments: data[0],
                 );
               }),
           ListTile(
             title: const Text('RELATÓRIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
 
               Navigator.pushNamed(
                 context,
                 '/historico',
-                arguments: data,
+                arguments: data[0],
               );
             },
           ),
