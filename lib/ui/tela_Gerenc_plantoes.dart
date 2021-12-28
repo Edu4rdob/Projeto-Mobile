@@ -66,8 +66,8 @@ class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
 
               Navigator.pushNamed(
                 context,
-                '/historico',
-                arguments: data[0],
+                '/tela-plantoes-registrados',
+                arguments: data,
               );
             },
           ),
