@@ -14,21 +14,18 @@ class FormPage2 extends StatefulWidget {
 }
 
 class _FormPages2State extends State<FormPage2> {
-  final GlobalKey<_FormPages2State> _formKey = GlobalKey<_FormPages2State>();
-
-  Future<List<Usuario>>? listaUsuarios;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
-    listaUsuarios = UsuarioDao().carregarUsuarios();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: buildBody(context),
+      body: buildBody(context, _formKey),
     );
   }
 }
@@ -46,7 +43,7 @@ buildAppBar(BuildContext context) {
   );
 }
 
-Container buildBody(BuildContext context) {
+Container buildBody(BuildContext context, _formKey) {
   return Container(
     /*var listaUsuarios;
   return FutureBuilder<List<Usuario>>(
@@ -70,6 +67,7 @@ Container buildBody(BuildContext context) {
     child: Container(
       margin: EdgeInsets.only(left: 40, right: 40),
       child: Form(
+        key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -93,8 +91,12 @@ Container buildBody(BuildContext context) {
                   child: Text('CONFIRMAR',
                       style: TextStyle(color: Colors.white, fontSize: 25)),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => TelaLoginPage()));
+                    if (!_formKey.currentState!.validate()) {
+                      return;
+                    } else {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => TelaLoginPage()));
+                    }
                   },
                 ))
           ],
@@ -106,6 +108,12 @@ Container buildBody(BuildContext context) {
 
 Widget builDataField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
         labelText: 'Digite a data de nascimento',
         enabledBorder: OutlineInputBorder(
@@ -118,6 +126,12 @@ Widget builDataField() {
 
 Widget buildCpfField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
       labelText: 'Digite seu CPF',
       enabledBorder: OutlineInputBorder(
@@ -131,6 +145,12 @@ Widget buildCpfField() {
 
 Widget buildTelefoneField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
       labelText: 'Digite seu telefone',
       enabledBorder: OutlineInputBorder(
@@ -144,6 +164,12 @@ Widget buildTelefoneField() {
 
 Widget buildAreaField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
       labelText: 'Digite sua área de atuação',
       enabledBorder: OutlineInputBorder(
