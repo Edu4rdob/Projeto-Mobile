@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/ui/chat.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
 import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
 
 import 'historico.dart';
 
@@ -18,15 +20,17 @@ class TelaGerenciarPlantoes extends StatefulWidget {
 class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody(),
       floatingActionButton: buildIconAppBar(context),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -35,38 +39,58 @@ class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
             color: Color.fromRGBO(66, 165, 245, 1.0),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                'DRA. ${usuario.nome}',
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),
               trailing: Icon(Icons.settings, size: 30)),
           ListTile(
             title: const Text('ÍNICIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-plantoes-ativos',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaPlantoesRegistrados()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/historico',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HistoricoPage()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/historico',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('SAIR'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
+            onTap: () async {
+              Navigator.pushNamed(
+                 context,
+                '/login'
+              );
             },
           ),
         ],

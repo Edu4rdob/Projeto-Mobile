@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
 import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
 
 import 'chat.dart';
 
@@ -28,15 +30,17 @@ class HistoricoPage extends StatefulWidget {
 class _HistoricoPageState extends State<HistoricoPage> {
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
+      body: buildBody(usuario),
       floatingActionButton: buildIconAppBar(context),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -45,8 +49,8 @@ class _HistoricoPageState extends State<HistoricoPage> {
             color: Color.fromRGBO(66, 165, 245, 1.0),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                'DRA. ${usuario.nome}',
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),
@@ -54,30 +58,50 @@ class _HistoricoPageState extends State<HistoricoPage> {
                   onPressed: () {}, icon: Icon(Icons.settings, size: 35))),
           ListTile(
             title: const Text('ÍNICIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-plantoes-ativos',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaGerenciarPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-gerenciar-plantoes',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaPlantoesRegistrados()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-plantoes-registrados',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('SAIR'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
+            onTap: () async {
+              Navigator.pushNamed(
+                 context,
+                '/login'
+              );
             },
           ),
         ],
@@ -111,7 +135,7 @@ buildIconAppBar(BuildContext context) {
   );
 }
 
-buildBody() {
+buildBody(Usuario usuario) {
   return Row(
     children: <Widget>[
       Expanded(
@@ -148,13 +172,13 @@ buildBody() {
                 ),
               ),
             ),
-            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA ADA', '24',
+            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}', '24',
                 Colors.orange, '09/12\n'),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA ADA', '12',
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12',
                 Colors.green.shade500, '08/12\n'),
-            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA ADA', '12',
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12',
                 Colors.green.shade500, '07/10\n'),
-            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA ADA', '12',
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12',
                 Colors.green.shade500, '07/10\n'),
           ]),
           //color: Colors.blue

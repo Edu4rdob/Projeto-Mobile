@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_application_1/data/dao/plantoes_dao.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/data/models/plantoes.dart';
 import 'package:flutter_application_1/data/models/usuario.dart';
 import 'package:flutter_application_1/ui/chat.dart';
@@ -33,7 +34,7 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
 
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
+      body: buildBody(usuario),
       floatingActionButton: buildIconAppBar(context),
       drawer: buildDrawer(context, usuario),
     );
@@ -64,30 +65,50 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
                   onPressed: () {}, icon: Icon(Icons.settings, size: 35))),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaGerenciarPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-gerenciar-plantoes',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaPlantoesRegistrados()));
-            },
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-plantoes-registrados',
+                arguments: data,
+              );
+            }
           ),
           ListTile(
             title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HistoricoPage()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/historico',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('SAIR'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
+           onTap: () async {
+              Navigator.pushNamed(
+                 context,
+                '/login'
+              );
             },
           ),
         ],
@@ -121,11 +142,11 @@ buildIconAppBar(BuildContext context) {
   );
 }
 
-buildBody() {
-  return buildRow();
+buildBody(Usuario usuario) {
+  return buildRow(usuario);
 }
 
-buildRow() {
+buildRow(Usuario usuario) {
   return Row(
     children: <Widget>[
       Expanded(
@@ -145,12 +166,12 @@ buildRow() {
           ),
           alignment: Alignment.topLeft,
           child: ListView(children: [
-            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ADA LOVELACE',
+            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}',
                 '24', Colors.green.shade500),
             buildContainerText(
-                'PLANTAO CARDIOLOGIA', 'DRA. MARIE CURIE', '12', Colors.orange),
+                'PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12', Colors.orange),
             buildContainerText(
-                'PLANTAO PEDIÁTRICO', 'DRA. ADA LOVELACE', '12', Colors.orange),
+                'PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12', Colors.orange),
           ]),
           //color: Colors.blue
         ),

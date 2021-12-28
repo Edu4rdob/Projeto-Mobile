@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_application_1/data/dao/plantoes_dao.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/data/models/plantoes.dart';
 import 'package:flutter_application_1/ui/chat.dart';
 import 'package:flutter_application_1/ui/historico.dart';
 import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
 
 class TelaPlantoesRegistrados extends StatefulWidget {
   const TelaPlantoesRegistrados({Key? key}) : super(key: key);
@@ -28,15 +30,18 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
 
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
+
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
+      body: buildBody(usuario),
       floatingActionButton: buildIconAppBar(context),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -45,8 +50,8 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             color: Color.fromRGBO(66, 165, 245, 1.0),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                'DRA. ${usuario.nome}',
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),
@@ -54,30 +59,50 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
                   onPressed: () {}, icon: Icon(Icons.settings, size: 35))),
           ListTile(
             title: const Text('ÍNICIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-plantoes-ativos',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => TelaGerenciarPlantoes()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/tela-gerenciar-plantoes',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => HistoricoPage()));
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+
+              Navigator.pushNamed(
+                 context,
+                '/historico',
+                arguments: data,
+              );
             },
           ),
           ListTile(
             title: const Text('SAIR'),
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => TelaLoginPage()));
+            onTap: () async {
+              Navigator.pushNamed(
+                 context,
+                '/login'
+              );
             },
           ),
         ],
@@ -114,11 +139,11 @@ buildIconAppBar(BuildContext context) {
   );
 }
 
-buildBody() {
-  return buildRow();
+buildBody(Usuario usuario) {
+  return buildRow(usuario);
 }
 
-buildRow() {
+buildRow(Usuario usuario) {
   return Row(
     children: <Widget>[
       Expanded(
@@ -138,23 +163,23 @@ buildRow() {
           ),
           alignment: Alignment.topLeft,
           child: ListView(children: [
-            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ADA LOVELACE',
+            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}',
                 '24', Colors.green.shade500),
             buildContainerText(
-                'PLANTAO CARDIOLOGIA', 'DRA. MARIE CURIE', '12', Colors.orange),
+                'PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12', Colors.orange),
             buildContainerText(
-                'PLANTAO PEDIÁTRICO', 'DRA. ADA LOVELACE', '12', Colors.orange),
+                'PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12', Colors.orange),
             buildContainerText(
-                'PLANTAO OBSTÉTRICO', 'DRA. ADA LOVELACE', '12', Colors.orange),
-            buildContainerText('PLANTAO PEDIATRICO', 'DRA. MARIE CURE', '24',
+                'PLANTAO OBSTÉTRICO', 'DRA. ${usuario.nome}', '12', Colors.orange),
+            buildContainerText('PLANTAO PEDIATRICO', 'DRA. ${usuario.nome}', '24',
                 Colors.green.shade500),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ADA LOVELACE', '12',
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12',
                 Colors.green.shade500),
             buildContainerText(
-                'PLANTAO CARDIOLOGIA', 'DR TOM JOBIM', '12', Colors.orange),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DR MICHAEL JACKSON',
+                'PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12', Colors.orange),
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
                 '12', Colors.green.shade500),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DR MICHAEL JACKSON',
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
                 '12', Colors.green.shade500),
           ]),
         ),
