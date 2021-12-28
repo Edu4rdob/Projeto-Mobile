@@ -22,22 +22,21 @@ class UsuarioDao {
     return listaUsuarios;
   }
 
-  Future<Usuario> buscarUsuario(
-      {required String usuario, required String senha}) async {
+  Future<List<Usuario>> login(
+      {required String usuarionome, required String senhausu}) async {
     List<Usuario> usuarios = [];
 
     DatabaseHelper databaseHelper = DatabaseHelper();
     Database db = await databaseHelper.db;
 
-    String sql = "SELECT * FROM `usuario`;";
+    String sql =
+        "SELECT * FROM `usuario` WHERE `nome_use` = '$usuarionome' AND `senha` = '$senhausu';";
     final result = await db.rawQuery(sql);
 
     for (var json in result) {
       Usuario user = Usuario.fromJson(json);
       usuarios.add(user);
     }
-    Usuario usuario = usuarios[0];
-
-    return usuario;
+    return usuarios;
   }
 }

@@ -25,7 +25,6 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
   @override
   void initState() {
     super.initState();
-    listaPlantoes = PlantoesDao().carregarPlantoes();
   }
 
   @override
