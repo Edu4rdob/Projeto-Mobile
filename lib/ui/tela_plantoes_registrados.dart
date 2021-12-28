@@ -11,7 +11,9 @@ import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
 
 class TelaPlantoesRegistrados extends StatefulWidget {
   const TelaPlantoesRegistrados({Key? key}) : super(key: key);
-
+  int _selectedIndex = 0;
+  List<Widget> _pages;
+  
   @override
   _TelaPlantoesRegistradosState createState() =>
       _TelaPlantoesRegistradosState();
@@ -24,18 +26,50 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
   void initState() {
     super.initState();
     listaPlantoes = PlantoesDao().carregarPlantoes();
+    
+    _pages = <Widget>[ 
+    TelaPlantoesRegistrados(), 
+    TelaGerenciarPlantoes(),
+    HistoricoPage(),
+    ];
+    
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
+      //body: buildBody(),
+      body: _pages[_selectedIndex],
       floatingActionButton: buildIconAppBar(context),
       drawer: buildDrawer(context),
+      bottomNavigationBar: buildBottomNavigationBar(),
     );
   }
 
+  BottomNavigationBar buildBottomNavigationBar() {
+  return BottomNavigationBar(
+    currentIndex: _selectedIndex,
+    
+    onTap: (index) { 
+      setState(() {
+        _selectedIndex = index;
+      })
+    },
+    
+    selectedItemColor: Colors.grey, // quando selecionados
+    unselectedItemColor: Colors.blue, // não selecionados
+    type: BottomNavigationBarType.fixed,
+    
+    items: [
+      BottomNavigationBarItem(icon: Icon(icons.assignment_ind_rounded), label: 'MEUS PLANTÕES'),
+      BottomNavigationBarItem(icon: Icon(icons.content_paste_rounded), label: 'GERENCIAR PLANTÕES'),
+      BottomNavigationBarItem(icon: Icon(icons.book), label: 'HISTÓRICO'),
+    ],
+    
+  );
+ }
+  
   Drawer buildDrawer(BuildContext context) {
     return Drawer(
       child: ListView(
