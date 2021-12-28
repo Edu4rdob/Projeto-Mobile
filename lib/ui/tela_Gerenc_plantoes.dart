@@ -49,10 +49,10 @@ class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
             title: const Text('ÍNICIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-plantoes-ativos',
                 arguments: data,
               );
@@ -62,10 +62,10 @@ class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
             title: const Text('PLANTÕES GERENCIADOS'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/historico',
                 arguments: data,
               );
@@ -75,10 +75,9 @@ class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
             title: const Text('RELATÓRIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
-
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
               Navigator.pushNamed(
-                 context,
+                context,
                 '/historico',
                 arguments: data,
               );
@@ -87,10 +86,7 @@ class TelaGerenciarPlantoesState extends State<TelaGerenciarPlantoes> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
-              Navigator.pushNamed(
-                 context,
-                '/login'
-              );
+              Navigator.pushNamed(context, '/login');
             },
           ),
         ],
