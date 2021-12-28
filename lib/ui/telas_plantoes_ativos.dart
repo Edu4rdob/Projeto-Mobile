@@ -67,36 +67,35 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-gerenciar-plantoes',
                 arguments: data,
               );
             },
           ),
           ListTile(
-            title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () async {
-              final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+              title: const Text('PLANTÕES GERENCIADOS'),
+              onTap: () async {
+                final data = await UsuarioDao()
+                    .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
-              Navigator.pushNamed(
-                 context,
-                '/tela-plantoes-registrados',
-                arguments: data,
-              );
-            }
-          ),
+                Navigator.pushNamed(
+                  context,
+                  '/tela-plantoes-registrados',
+                  arguments: data,
+                );
+              }),
           ListTile(
             title: const Text('RELATÓRIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/historico',
                 arguments: data,
               );
@@ -104,11 +103,8 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
           ),
           ListTile(
             title: const Text('SAIR'),
-           onTap: () async {
-              Navigator.pushNamed(
-                 context,
-                '/login'
-              );
+            onTap: () async {
+              Navigator.pushNamed(context, '/login');
             },
           ),
         ],
@@ -168,10 +164,10 @@ buildRow(Usuario usuario) {
           child: ListView(children: [
             buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}',
                 '24', Colors.green.shade500),
-            buildContainerText(
-                'PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12', Colors.orange),
-            buildContainerText(
-                'PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12', Colors.orange),
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
+                '12', Colors.orange),
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}',
+                '12', Colors.orange),
           ]),
           //color: Colors.blue
         ),

@@ -60,10 +60,10 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             title: const Text('ÍNICIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-plantoes-ativos',
                 arguments: data,
               );
@@ -73,10 +73,10 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-gerenciar-plantoes',
                 arguments: data,
               );
@@ -86,10 +86,10 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             title: const Text('RELATÓRIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/historico',
                 arguments: data,
               );
@@ -98,10 +98,7 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
-              Navigator.pushNamed(
-                 context,
-                '/login'
-              );
+              Navigator.pushNamed(context, '/login');
             },
           ),
         ],
@@ -164,18 +161,18 @@ buildRow(Usuario usuario) {
           child: ListView(children: [
             buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}',
                 '24', Colors.green.shade500),
-            buildContainerText(
-                'PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12', Colors.orange),
-            buildContainerText(
-                'PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12', Colors.orange),
-            buildContainerText(
-                'PLANTAO OBSTÉTRICO', 'DRA. ${usuario.nome}', '12', Colors.orange),
-            buildContainerText('PLANTAO PEDIATRICO', 'DRA. ${usuario.nome}', '24',
-                Colors.green.shade500),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12',
-                Colors.green.shade500),
-            buildContainerText(
-                'PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12', Colors.orange),
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
+                '12', Colors.orange),
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}',
+                '12', Colors.orange),
+            buildContainerText('PLANTAO OBSTÉTRICO', 'DRA. ${usuario.nome}',
+                '12', Colors.orange),
+            buildContainerText('PLANTAO PEDIATRICO', 'DRA. ${usuario.nome}',
+                '24', Colors.green.shade500),
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
+                '12', Colors.green.shade500),
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
+                '12', Colors.orange),
             buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
                 '12', Colors.green.shade500),
             buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',

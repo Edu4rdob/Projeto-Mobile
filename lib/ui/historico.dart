@@ -60,10 +60,10 @@ class _HistoricoPageState extends State<HistoricoPage> {
             title: const Text('ÍNICIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-plantoes-ativos',
                 arguments: data,
               );
@@ -73,10 +73,10 @@ class _HistoricoPageState extends State<HistoricoPage> {
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-gerenciar-plantoes',
                 arguments: data,
               );
@@ -86,10 +86,10 @@ class _HistoricoPageState extends State<HistoricoPage> {
             title: const Text('PLANTÕES GERENCIADOS'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-plantoes-registrados',
                 arguments: data,
               );
@@ -98,10 +98,7 @@ class _HistoricoPageState extends State<HistoricoPage> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
-              Navigator.pushNamed(
-                 context,
-                '/login'
-              );
+              Navigator.pushNamed(context, '/login');
             },
           ),
         ],
@@ -172,14 +169,14 @@ buildBody(Usuario usuario) {
                 ),
               ),
             ),
-            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}', '24',
-                Colors.orange, '09/12\n'),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}', '12',
-                Colors.green.shade500, '08/12\n'),
-            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12',
-                Colors.green.shade500, '07/10\n'),
-            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}', '12',
-                Colors.green.shade500, '07/10\n'),
+            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}',
+                '24', Colors.orange, '09/12\n'),
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
+                '12', Colors.green.shade500, '08/12\n'),
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}',
+                '12', Colors.green.shade500, '07/10\n'),
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}',
+                '12', Colors.green.shade500, '07/10\n'),
           ]),
           //color: Colors.blue
         ),

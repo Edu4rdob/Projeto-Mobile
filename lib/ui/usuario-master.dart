@@ -34,7 +34,7 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
     Usuario usuario = argumentUsuario;
     return Scaffold(
       appBar: buildAppBar(),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
@@ -75,9 +75,7 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
             ])),
           ),
           ListTile(
-              title: Text(
-                 'DRA. ${usuario.nome}'
-              ),
+              title: Text('DRA. ${usuario.nome}'),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),
               trailing: IconButton(

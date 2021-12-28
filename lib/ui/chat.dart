@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_application_1/data/dao/usuario_dao.dart';
-import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
-import 'package:flutter_application_1/ui/tela_login.dart';
-import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
-import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+
 import 'package:flutter_application_1/data/models/usuario.dart';
 
 class Chat extends StatefulWidget {
@@ -59,10 +54,10 @@ class _ChatState extends State<Chat> {
             title: const Text('ÍNICIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-plantoes-ativos',
                 arguments: data,
               );
@@ -72,10 +67,10 @@ class _ChatState extends State<Chat> {
             title: const Text('GERENCIAR PLANTÕES'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-gerenciar-plantoes',
                 arguments: data,
               );
@@ -85,10 +80,10 @@ class _ChatState extends State<Chat> {
             title: const Text('PLANTÕES GERENCIADOS'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/tela-plantoes-registrados',
                 arguments: data,
               );
@@ -98,10 +93,10 @@ class _ChatState extends State<Chat> {
             title: const Text('RELATÓRIO'),
             onTap: () async {
               final data = await UsuarioDao()
-                  .buscarUsuario(usuario: usuario.nome, senha: usuario.senha);
+                  .login(usuarionome: usuario.nome, senhausu: usuario.senha);
 
               Navigator.pushNamed(
-                 context,
+                context,
                 '/historico',
                 arguments: data,
               );
@@ -110,10 +105,7 @@ class _ChatState extends State<Chat> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
-              Navigator.pushNamed(
-                 context,
-                '/login'
-              );
+              Navigator.pushNamed(context, '/login');
             },
           ),
         ],
