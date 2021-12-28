@@ -203,6 +203,7 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
 
   widgetTextFieldLock() {
     return TextFormField(
+      obscureText: true,
       controller: _senha,
       validator: (value) {
         if (value == null || value.isEmpty) {
