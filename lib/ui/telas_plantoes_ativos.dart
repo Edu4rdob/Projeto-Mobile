@@ -30,6 +30,7 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
   @override
   Widget build(BuildContext context) {
     dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+
     Usuario usuario = argumentUsuario;
 
     return Scaffold(
@@ -68,9 +69,7 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
             onTap: () async {
               final data = await UsuarioDao()
                   .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
-              print('printando o data:$data');
-              print(usuario.nome);
-              print(usuario.senha);
+
               Navigator.pushNamed(
                 context,
                 '/tela-gerenciar-plantoes',

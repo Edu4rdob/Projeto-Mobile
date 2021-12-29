@@ -22,29 +22,8 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
   final _senha = TextEditingController();
 
   @override
-    void initState(){
-      super.initState();
-      _loadData();
-    }
-    _loadData() async{
-      SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
-      bool isLogged = await sharedPreferences.getUser();
-     // final data = await UsuarioDao()
-     // .login(usuarionome: usuario, senhausu: senha);
-
-      if(isLogged){
-        Navigator.pushReplacement(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => TelaPlantoes())
-        );
-      }
-    }
-
-  @override
   Widget build(BuildContext context) {
-    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
-    Usuario usuario = argumentUsuario;
+    
     return Scaffold(
       body: buildBody(),
     );
@@ -118,13 +97,10 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                     onPressed: () async {
                       bool valido = _formKey.currentState!.validate();
 
-                      print(valido);
 
                       if (valido) {
                         String nome = _nome.text;
                         String senha = _senha.text;
-                        print(nome);
-                        print(senha);
 
                         final data = await UsuarioDao()
                             .login(usuarionome: nome, senhausu: senha);
@@ -140,6 +116,8 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                           } else {
                             SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
                             sharedPreferences.setUser(true);
+                            sharedPreferences.saveUser(data[0]);
+
                             Navigator.pushNamed(     //!!!!!!pushReplacedment pra nao voltar pra tela de login
                               context,
                               '/tela-plantoes-ativos',

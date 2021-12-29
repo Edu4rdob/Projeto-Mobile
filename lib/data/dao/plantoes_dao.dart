@@ -19,7 +19,7 @@ class PlantoesDao {
     }
     for (int i = 0; i < listaPlantoes.length; i++) {
       lista = listaPlantoes[i];
-      print(lista.nome);
+
     }
 
     return listaPlantoes;
