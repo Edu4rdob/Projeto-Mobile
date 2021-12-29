@@ -23,6 +23,7 @@ environment:
 dependencies:
   path:
   sqflite:
+  shared_preferences:
   flutter:
     sdk: flutter
 

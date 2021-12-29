@@ -7,6 +7,7 @@ import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
 import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
 import 'package:flutter_application_1/data/models/usuario.dart';
+import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 
 import 'chat.dart';
 
@@ -98,6 +99,8 @@ class _HistoricoPageState extends State<HistoricoPage> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
+              SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+              sharedPreferences.setUser(false);
               Navigator.pushNamed(context, '/login');
             },
           ),

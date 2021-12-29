@@ -10,6 +10,7 @@ import 'package:flutter_application_1/ui/historico.dart';
 import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 
 class TelaPlantoes extends StatefulWidget {
   const TelaPlantoes({Key? key}) : super(key: key);
@@ -105,6 +106,8 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
+              SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+              sharedPreferences.setUser(false);
               Navigator.pushNamed(context, '/login');
             },
           ),
