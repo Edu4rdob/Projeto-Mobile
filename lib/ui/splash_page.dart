@@ -1,6 +1,6 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 
 class SplashPage extends StatefulWidget {
@@ -14,35 +14,25 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage>{
     @override
     void initState(){
+      iniciarTela(context);
       super.initState();
-      _loadData();
+      
     }
 
      _loadData() async{
       SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
-      //String isLogged = await sharedPreferences.getUser(usuario);
-      bool isLogged = await sharedPreferences.getUser();
-     //final data = await UsuarioDao()
-     //.login(usuarionome: usuario, senhausu: senha);
+      Map<String, String> logado = await sharedPreferences.getUser();
 
-      await Future.delayed(Duration(seconds: 2));
-      if(isLogged == true){
-
-        Navigator.pushNamed(
-                context,
-                '/usuario-master',
-                arguments: await sharedPreferences.readUser(),
-                
-              );
-              print('coco');
-              print(sharedPreferences.readUser());
+      String user = logado['user']!;
+      String senha = logado['senha']!;
+      
+      final data = await UsuarioDao().login(usuarionome: user, senhausu: senha);
+      if(user == 'marie_curie02' || user.isNotEmpty){
+        Navigator.pushNamed(context, '/tela-plantoes-ativos', arguments: data[0]);
       }else{
-        print('aee');
-        Navigator.pushNamed(context, '/login');
-         
-         
+        Navigator.popAndPushNamed(context, '/login');
       }
-    }
+      }
     
 
   @override
@@ -56,8 +46,12 @@ class _SplashPageState extends State<SplashPage>{
     return Center(
       child: CircularProgressIndicator(),
     );
+
   }
 
- 
-
+  void iniciarTela(context) {
+     Future.delayed(const Duration(milliseconds: 2000)).then((value) {
+      _loadData();
+    });
+  }
 }

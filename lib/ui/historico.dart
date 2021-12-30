@@ -100,7 +100,7 @@ class _HistoricoPageState extends State<HistoricoPage> {
             title: const Text('SAIR'),
             onTap: () async {
               SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
-              sharedPreferences.setUser(false);
+              sharedPreferences.sair();
               Navigator.pushNamed(context, '/login');
             },
           ),

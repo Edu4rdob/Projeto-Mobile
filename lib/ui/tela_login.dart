@@ -115,8 +115,7 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                             );
                           } else {
                             SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
-                            sharedPreferences.setUser(true);
-                            sharedPreferences.saveUser(data[0]);
+                            sharedPreferences.setUser(data[0].nomeUse, data[0].senha);
 
                             Navigator.pushNamed(     //!!!!!!pushReplacedment pra nao voltar pra tela de login
                               context,

@@ -100,7 +100,7 @@ class _TelaPlantoesRegistradosState extends State<TelaPlantoesRegistrados> {
             title: const Text('SAIR'),
             onTap: () async {
               SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
-              sharedPreferences.setUser(false);
+              sharedPreferences.sair();
               Navigator.pushNamed(context, '/login');
             },
           ),

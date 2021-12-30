@@ -107,7 +107,7 @@ class _ChatState extends State<Chat> {
             title: const Text('SAIR'),
             onTap: () async {
               SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
-              sharedPreferences.setUser(false);
+              sharedPreferences.sair();
               Navigator.pushNamed(context, '/login');
             },
           ),

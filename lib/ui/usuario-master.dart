@@ -85,7 +85,7 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
             title: const Text('SAIR'),
             onTap: () {
               SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
-              sharedPreferences.setUser(false);
+              sharedPreferences.sair();
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => TelaLoginPage()));
             },
