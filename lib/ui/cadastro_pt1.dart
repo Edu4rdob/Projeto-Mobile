@@ -14,18 +14,13 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPagesState extends State<FormPage> {
-  String _nome = '';
-  String _nomeUsuario = '';
-  String _email = '';
-  String _senha = '';
-
-  final GlobalKey<_FormPagesState> _formKey = GlobalKey<_FormPagesState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: buildBody(context),
+      body: buildBody(context, _formKey),
     );
   }
 }
@@ -43,7 +38,7 @@ buildAppBar(BuildContext context) {
   );
 }
 
-Container buildBody(BuildContext context) {
+Container buildBody(BuildContext context, _formKey) {
   return Container(
     decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
@@ -56,6 +51,7 @@ Container buildBody(BuildContext context) {
     child: Container(
       margin: EdgeInsets.only(left: 40, right: 40),
       child: Form(
+        key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -79,8 +75,12 @@ Container buildBody(BuildContext context) {
                   child: Text('Proximo',
                       style: TextStyle(color: Colors.white, fontSize: 25)),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => FormPage2()));
+                    if (!_formKey.currentState!.validate()) {
+                      return;
+                    } else {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => FormPage2()));
+                    }
                   },
                 ))
           ],
@@ -92,6 +92,12 @@ Container buildBody(BuildContext context) {
 
 Widget buildNameField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
       labelText: 'Digite seu nome',
       enabledBorder: OutlineInputBorder(
@@ -105,6 +111,12 @@ Widget buildNameField() {
 
 Widget buildNomeUsuarioField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
       labelText: 'Digite seu Usuário',
       enabledBorder: OutlineInputBorder(
@@ -118,21 +130,34 @@ Widget buildNomeUsuarioField() {
 
 Widget buildemailField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
-      labelText: 'Digite sua Senha',
+      labelText: 'Digite seu email',
       enabledBorder: OutlineInputBorder(
           borderRadius: (BorderRadius.all(Radius.circular(5)))),
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 2, color: Colors.blue)),
-      prefixIcon: Icon(Icons.lock),
+      prefixIcon: Icon(Icons.email),
     ),
   );
 }
 
 Widget buildSenhaField() {
   return TextFormField(
+    obscureText: true,
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
-      labelText: 'Digite novamente sua senha',
+      labelText: 'Digite sua senha',
       enabledBorder: OutlineInputBorder(
           borderRadius: (BorderRadius.all(Radius.circular(5)))),
       focusedBorder: OutlineInputBorder(
