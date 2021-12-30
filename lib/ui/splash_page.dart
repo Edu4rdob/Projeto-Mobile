@@ -43,10 +43,15 @@ class _SplashPageState extends State<SplashPage>{
   }
 
   buildBody() {
-    return Center(
-      child: CircularProgressIndicator(),
-    );
-
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Color(0xff295872), Color(0xff8dbeda)]
+          )
+        ),
+       child: Center(child: CircularProgressIndicator(color: Colors.white,)),
+       
+      );
   }
 
   void iniciarTela(context) {
