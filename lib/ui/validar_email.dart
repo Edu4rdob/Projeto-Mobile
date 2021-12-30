@@ -12,6 +12,8 @@ class ValidateEmail extends StatefulWidget {
 }
 
 class _ValidateEmailState extends State<ValidateEmail> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,42 +55,61 @@ class _ValidateEmailState extends State<ValidateEmail> {
 
   Container buildContainer() {
     return Container(
-      padding: EdgeInsets.all(16),
-      margin: EdgeInsets.all(16),
-      child: Column(
-        children: [
-          SizedBox(height: 80),
-          SizedBox(
-            width: 200,
-            height: 200,
-            child: Image.asset('ALAN_TURING.png'),
+        padding: EdgeInsets.all(16),
+        margin: EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              SizedBox(height: 80),
+              SizedBox(
+                width: 200,
+                height: 200,
+                child: Image.asset('ALAN_TURING.png'),
+              ),
+              SizedBox(height: 30),
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Campo obrigatório!';
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(labelText: 'Email'),
+              ),
+              SizedBox(height: 30),
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Campo obrigatório!';
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(labelText: 'CPF'),
+              ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Color(0xff67a8cd),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
+                onPressed: () {
+                  if (!_formKey.currentState!.validate()) {
+                    return;
+                  } else {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) => Troca()));
+                  }
+                },
+                child: Text(
+                  'CONFIRMAR',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ],
           ),
-          SizedBox(height: 30),
-          TextFormField(
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(labelText: 'Email'),
-          ),
-          SizedBox(height: 30),
-          TextFormField(
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(labelText: 'CPF'),
-          ),
-          SizedBox(height: 30),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                primary: Color(0xff67a8cd),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20)),
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => Troca()));
-            },
-            child: Text(
-              'CONFIRMAR',
-              style: TextStyle(color: Colors.black),
-            ),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }
