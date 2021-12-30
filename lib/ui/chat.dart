@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 
 import 'package:flutter_application_1/data/models/usuario.dart';
+import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
@@ -105,6 +106,8 @@ class _ChatState extends State<Chat> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
+              SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+              sharedPreferences.sair();
               Navigator.pushNamed(context, '/login');
             },
           ),

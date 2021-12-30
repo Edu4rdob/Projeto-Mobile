@@ -3,6 +3,7 @@ import 'package:flutter_application_1/ui/cadastro_pt1.dart';
 import 'package:flutter_application_1/ui/cadastro_pt2.dart';
 import 'package:flutter_application_1/ui/chat.dart';
 import 'package:flutter_application_1/ui/historico.dart';
+import 'package:flutter_application_1/ui/splash_page.dart';
 import 'package:flutter_application_1/ui/tela-configuracao-usu.dart';
 import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
@@ -17,7 +18,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TelaLoginPage(),
+      home: SplashPage(),
       routes: {
         '/login': (context) => const TelaLoginPage(),
         '/cadastro-pt1': (context) => const FormPage(),
@@ -32,6 +33,7 @@ void main() {
         '/tela-trocar-senha': (context) => const Troca(),
         '/usuario-master': (context) => const UsuarioMaster(),
         '/validar-email': (context) => const ValidateEmail(),
+        '/splash-page': (context) => const SplashPage(),
       },
     ),
   );

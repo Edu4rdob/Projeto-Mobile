@@ -10,6 +10,7 @@ import 'package:flutter_application_1/ui/historico.dart';
 import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 
 class TelaPlantoes extends StatefulWidget {
   const TelaPlantoes({Key? key}) : super(key: key);
@@ -29,6 +30,7 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
   @override
   Widget build(BuildContext context) {
     dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+
     Usuario usuario = argumentUsuario;
 
     return Scaffold(
@@ -67,9 +69,7 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
             onTap: () async {
               final data = await UsuarioDao()
                   .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
-              print('printando o data:$data');
-              print(usuario.nome);
-              print(usuario.senha);
+
               Navigator.pushNamed(
                 context,
                 '/tela-gerenciar-plantoes',
@@ -105,6 +105,8 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
+              SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+              sharedPreferences.sair();
               Navigator.pushNamed(context, '/login');
             },
           ),

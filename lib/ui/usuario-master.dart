@@ -3,6 +3,7 @@ import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
 import 'package:flutter_application_1/ui/tela_login.dart';
 import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
 import 'package:flutter_application_1/data/models/usuario.dart';
+import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 
 import 'historico.dart';
 
@@ -83,6 +84,8 @@ class _UsuarioMasterState extends State<UsuarioMaster> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () {
+              SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+              sharedPreferences.sair();
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => TelaLoginPage()));
             },

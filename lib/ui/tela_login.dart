@@ -2,9 +2,12 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/dao/usuario_dao.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
+import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 import 'package:flutter_application_1/ui/cadastro_pt1.dart';
 import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
 import 'package:flutter_application_1/ui/validar_email.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TelaLoginPage extends StatefulWidget {
   const TelaLoginPage({Key? key}) : super(key: key);
@@ -17,8 +20,10 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _nome = TextEditingController();
   final _senha = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: buildBody(),
     );
@@ -92,13 +97,10 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                     onPressed: () async {
                       bool valido = _formKey.currentState!.validate();
 
-                      print(valido);
 
                       if (valido) {
                         String nome = _nome.text;
                         String senha = _senha.text;
-                        print(nome);
-                        print(senha);
 
                         final data = await UsuarioDao()
                             .login(usuarionome: nome, senhausu: senha);
@@ -112,7 +114,10 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
                               arguments: data[0],
                             );
                           } else {
-                            Navigator.pushNamed(
+                            SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+                            sharedPreferences.setUser(data[0].nomeUse, data[0].senha);
+
+                            Navigator.pushNamed(     //!!!!!!pushReplacedment pra nao voltar pra tela de login
                               context,
                               '/tela-plantoes-ativos',
                               arguments: data[0],
