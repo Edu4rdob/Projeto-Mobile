@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Plantoes {
   late int id;
   late String nome;
-  late String? cpf;
+  late String cpf;
   late String duracao;
   late String data;
   late String hora;

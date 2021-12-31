@@ -1,15 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:flutter_application_1/data/dao/plantoes_dao.dart';
 import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/data/models/plantoes.dart';
 import 'package:flutter_application_1/data/models/usuario.dart';
 import 'package:flutter_application_1/ui/chat.dart';
-import 'package:flutter_application_1/ui/historico.dart';
-import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
-import 'package:flutter_application_1/ui/tela_login.dart';
-import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
 import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 
 class TelaPlantoes extends StatefulWidget {
@@ -105,7 +99,8 @@ class _TelaPlantoesState extends State<TelaPlantoes> {
           ListTile(
             title: const Text('SAIR'),
             onTap: () async {
-              SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+              SharedPreferencesHelper sharedPreferences =
+                  SharedPreferencesHelper();
               sharedPreferences.sair();
               Navigator.pushNamed(context, '/login');
             },

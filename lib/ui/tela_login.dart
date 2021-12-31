@@ -1,6 +1,7 @@
 import 'package:flutter/painting.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/data/dao/plantoes_dao.dart';
 import 'package:flutter_application_1/data/dao/usuario_dao.dart';
 import 'package:flutter_application_1/data/models/usuario.dart';
 import 'package:flutter_application_1/data/shared_preferences_helper.dart';
@@ -23,7 +24,6 @@ class _TelaLoginPageState extends State<TelaLoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: buildBody(),
     );

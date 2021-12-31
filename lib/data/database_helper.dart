@@ -41,21 +41,24 @@ class DatabaseHelper {
     sql =
         "INSERT INTO usuario (nome, nome_use, senha, data_nascimento, cpf, telefone, area_atuacao) VALUES ('Usuario assistente', 'usu_assistente', '12345678', '27/12/2001', '54333222111', '082999112233', '-');";
     await db.execute(sql);
+    sql =
+        "INSERT INTO usuario (nome, nome_use, senha, data_nascimento, cpf, telefone, area_atuacao) VALUES ('MICHAEL JACKSON', 'MJACKSON', '12345678', '02/12/1971', '11122255569', '08299875649', 'Pediatria');";
+    await db.execute(sql);
 
     sql =
         "INSERT INTO plantoes (id, nome, cpf_FK, duracao, data, hora) VALUES (1, 'PLANTAO CLINICO GERAL', '11122233345', '24', '09/02', '12:00h');";
     await db.execute(sql);
     sql =
-        "INSERT INTO plantoes (id, nome, cpf_FK, duracao, data, hora) VALUES (2, 'PLANTAO CARDIOLOGIA', null, '12', '05/04', '00:00h');";
+        "INSERT INTO plantoes (id, nome, cpf_FK, duracao, data, hora) VALUES (2, 'PLANTAO PEDIATRICO', 11122255569, '12', '05/04', '00:00h');";
     await db.execute(sql);
     sql =
         "INSERT INTO plantoes (id, nome, cpf_FK, duracao, data, hora) VALUES (3, 'PLANTAO CLINICO GERAL', '11122233345', '12', '09/12', '12:00h');";
     await db.execute(sql);
     sql =
-        "INSERT INTO plantoes (id, nome, cpf_FK, duracao, data, hora) VALUES (4, 'PLANTAO PEDIATRICO', null, '24', '06/11', '00:00h');";
+        "INSERT INTO plantoes (id, nome, cpf_FK, duracao, data, hora) VALUES (4, 'PLANTAO PEDIATRICO', 11122255569, '24', '06/11', '00:00h');";
     await db.execute(sql);
     sql =
-        "INSERT INTO plantoes (id, nome, cpf_FK, duracao, data, hora) VALUES (5, 'PLANTAO CLINICO GERAL', null, '24', '30/05', '14:00h');";
+        "INSERT INTO plantoes (id, nome, cpf_FK, duracao, data, hora) VALUES (5, 'PLANTAO PEDIATRICO', 11122255569, '24', '30/05', '14:00h');";
     await db.execute(sql);
   }
 }
