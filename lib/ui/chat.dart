@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
+
+import 'package:flutter_application_1/data/models/usuario.dart';
+import 'package:flutter_application_1/data/shared_preferences_helper.dart';
 
 class Chat extends StatefulWidget {
   const Chat({Key? key}) : super(key: key);
@@ -12,10 +14,12 @@ class Chat extends StatefulWidget {
 class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
     return Scaffold(
       //appBar: buildAppBar(),
       appBar: buildAppBar(),
-      drawer: buildDrawer(context),
+      drawer: buildDrawer(context, usuario),
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: [
@@ -32,7 +36,7 @@ class _ChatState extends State<Chat> {
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -41,40 +45,70 @@ class _ChatState extends State<Chat> {
             color: Color.fromRGBO(66, 165, 245, 1.0),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                'DRA. ${usuario.nome}',
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),
               trailing: Icon(Icons.settings, size: 30)),
           ListTile(
             title: const Text('ÍNICIO'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
+
+              Navigator.pushNamed(
+                context,
+                '/tela-plantoes-ativos',
+                arguments: data[0],
+              );
             },
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
+
+              Navigator.pushNamed(
+                context,
+                '/tela-gerenciar-plantoes',
+                arguments: data[0],
+              );
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
+
+              Navigator.pushNamed(
+                context,
+                '/tela-plantoes-registrados',
+                arguments: data[0],
+              );
             },
           ),
           ListTile(
             title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
+
+              Navigator.pushNamed(
+                context,
+                '/historico',
+                arguments: data[0],
+              );
             },
           ),
           ListTile(
             title: const Text('SAIR'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+              sharedPreferences.sair();
+              Navigator.pushNamed(context, '/login');
             },
           ),
         ],
@@ -87,7 +121,7 @@ class _ChatState extends State<Chat> {
       actions: [
         IconButton(onPressed: () {}, icon: Icon(Icons.search)),
       ],
-      title: Align(alignment: Alignment.center, child: Text('MEUS PLANTÕES')),
+      title: Align(alignment: Alignment.center, child: Text('CHAT')),
       backgroundColor: Colors.blueGrey.shade700,
     );
   }
@@ -104,7 +138,7 @@ class _ChatState extends State<Chat> {
       margin: EdgeInsets.all(0),
       child: Column(
         children: [
-          SizedBox(height: 130),
+          SizedBox(height: 110),
           Opacity(
             opacity: 0.4,
             child: SizedBox(

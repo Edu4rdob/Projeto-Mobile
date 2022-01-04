@@ -1,6 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/data/dao/usuario_dao.dart';
+import 'package:flutter_application_1/ui/tela_Gerenc_plantoes.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
+import 'package:flutter_application_1/ui/tela_plantoes_registrados.dart';
+import 'package:flutter_application_1/ui/telas_plantoes_ativos.dart';
+import 'package:flutter_application_1/data/models/usuario.dart';
+import 'package:flutter_application_1/data/shared_preferences_helper.dart';
+
+import 'chat.dart';
 
 void main() {
   runApp(
@@ -22,15 +31,17 @@ class HistoricoPage extends StatefulWidget {
 class _HistoricoPageState extends State<HistoricoPage> {
   @override
   Widget build(BuildContext context) {
+    dynamic argumentUsuario = ModalRoute.of(context)!.settings.arguments;
+    Usuario usuario = argumentUsuario;
     return Scaffold(
       appBar: buildAppBar(),
-      body: buildBody(),
-      floatingActionButton: buildIconAppBar(),
-      drawer: buildDrawer(context),
+      body: buildBody(usuario),
+      floatingActionButton: buildIconAppBar(context),
+      drawer: buildDrawer(context, usuario),
     );
   }
 
-  Drawer buildDrawer(BuildContext context) {
+  Drawer buildDrawer(BuildContext context, Usuario usuario) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -39,8 +50,8 @@ class _HistoricoPageState extends State<HistoricoPage> {
             color: Color.fromRGBO(66, 165, 245, 1.0),
           ),
           ListTile(
-              title: const Text(
-                'DRA. ADA LOVELACE',
+              title: Text(
+                'DRA. ${usuario.nome}',
               ),
               subtitle: const Text('Hospital Alan Turing'),
               leading: Icon(Icons.account_circle_rounded, size: 50),
@@ -48,32 +59,49 @@ class _HistoricoPageState extends State<HistoricoPage> {
                   onPressed: () {}, icon: Icon(Icons.settings, size: 35))),
           ListTile(
             title: const Text('ÍNICIO'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
+
+              Navigator.pushNamed(
+                context,
+                '/tela-plantoes-ativos',
+                arguments: data[0],
+              );
             },
           ),
           ListTile(
             title: const Text('GERENCIAR PLANTÕES'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
+
+              Navigator.pushNamed(
+                context,
+                '/tela-gerenciar-plantoes',
+                arguments: data[0],
+              );
             },
           ),
           ListTile(
             title: const Text('PLANTÕES GERENCIADOS'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('RELATÓRIO'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              final data = await UsuarioDao()
+                  .login(usuarionome: usuario.nomeUse, senhausu: usuario.senha);
+
+              Navigator.pushNamed(
+                context,
+                '/tela-plantoes-registrados',
+                arguments: data[0],
+              );
             },
           ),
           ListTile(
             title: const Text('SAIR'),
-            onTap: () {
-              Navigator.pop(context);
+            onTap: () async {
+              SharedPreferencesHelper sharedPreferences = SharedPreferencesHelper();
+              sharedPreferences.sair();
+              Navigator.pushNamed(context, '/login');
             },
           ),
         ],
@@ -93,24 +121,27 @@ buildAppBar() {
   );
 }
 
-buildIconAppBar() {
+buildIconAppBar(BuildContext context) {
   return FloatingActionButton(
     child: Icon(
       Icons.message_rounded,
       size: 30,
     ),
     backgroundColor: Color(0xff295872),
-    onPressed: () {},
+    onPressed: () {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Chat()));
+    },
   );
 }
 
-buildBody() {
+buildBody(Usuario usuario) {
   return Row(
     children: <Widget>[
       Expanded(
         flex: 6,
         child: Container(
-          padding: EdgeInsets.only(bottom: 15),
+          padding: EdgeInsets.only(bottom: 5),
           decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
@@ -141,20 +172,20 @@ buildBody() {
                 ),
               ),
             ),
-            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA ADA', '24',
-                Colors.orange, '09/12\n'),
-            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA ADA', '12',
-                Colors.green.shade500, '08/12\n'),
-            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA ADA', '12',
-                Colors.green.shade500, '07/10\n'),
-            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA ADA', '12',
-                Colors.green.shade500, '07/10\n'),
+            buildContainerText('PLANTAO CLÍNICO GERAL', 'DRA. ${usuario.nome}',
+                '24', Colors.orange, '09/12\n'),
+            buildContainerText('PLANTAO CARDIOLOGIA', 'DRA. ${usuario.nome}',
+                '12', Colors.green.shade500, '08/12\n'),
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}',
+                '12', Colors.green.shade500, '07/10\n'),
+            buildContainerText('PLANTAO PEDIÁTRICO', 'DRA. ${usuario.nome}',
+                '12', Colors.green.shade500, '07/10\n'),
           ]),
           //color: Colors.blue
         ),
       ),
       Expanded(
-        flex: 2,
+        flex: 3,
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -177,9 +208,21 @@ buildBody() {
                   ),
                 ),
               )),
+              SizedBox(
+                height: 6,
+              ),
               buildContainerTipo(1),
+              SizedBox(
+                height: 6,
+              ),
               buildContainerTipo(1),
+              SizedBox(
+                height: 6,
+              ),
               buildContainerTipo(0),
+              SizedBox(
+                height: 6,
+              ),
               buildContainerTipo(1),
             ],
           ),
@@ -247,7 +290,7 @@ buildContainerTipo(int op) {
             child: ListTile(
               title: Icon(
                 Icons.check_circle_outline,
-                size: 36,
+                size: 30,
                 color: Colors.green.shade500,
               ),
               subtitle: Text('CONCLUÍDO',
@@ -264,7 +307,7 @@ buildContainerTipo(int op) {
             child: ListTile(
               title: Icon(
                 Icons.cancel_outlined,
-                size: 36,
+                size: 30,
                 color: Colors.red.shade700,
               ),
               subtitle: Text('CANCELADO',

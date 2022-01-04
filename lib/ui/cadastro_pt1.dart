@@ -1,5 +1,10 @@
 //import 'package:cwc_flutter/form_screen.dart';
+
+import 'package:flutter/painting.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/ui/cadastro_pt2.dart';
+import 'package:flutter_application_1/ui/tela_login.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
@@ -9,32 +14,31 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPagesState extends State<FormPage> {
-  String _nome = '';
-  String _nomeUsuario = '';
-  String _email = '';
-  String _senha = '';
-
-  final GlobalKey<_FormPagesState> _formKey = GlobalKey<_FormPagesState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
-      body: buildBody(),
+      appBar: buildAppBar(context),
+      body: buildBody(context, _formKey),
     );
   }
 }
 
-buildAppBar() {
+buildAppBar(BuildContext context) {
   return AppBar(
     leading: IconButton(
-        onPressed: () {}, icon: Icon(Icons.keyboard_arrow_left_outlined)),
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => TelaLoginPage()));
+        },
+        icon: Icon(Icons.keyboard_arrow_left_outlined)),
     title: Align(alignment: Alignment(-0.2, 1.0), child: Text('CADASTRO')),
     backgroundColor: Color(0xff204559),
   );
 }
 
-Container buildBody() {
+Container buildBody(BuildContext context, _formKey) {
   return Container(
     decoration: BoxDecoration(
         gradient: LinearGradient(colors: [
@@ -47,6 +51,7 @@ Container buildBody() {
     child: Container(
       margin: EdgeInsets.only(left: 40, right: 40),
       child: Form(
+        key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -69,7 +74,14 @@ Container buildBody() {
                           left: 20, right: 20, top: 10, bottom: 10)),
                   child: Text('Proximo',
                       style: TextStyle(color: Colors.white, fontSize: 25)),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (!_formKey.currentState!.validate()) {
+                      return;
+                    } else {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => FormPage2()));
+                    }
+                  },
                 ))
           ],
         ),
@@ -80,6 +92,12 @@ Container buildBody() {
 
 Widget buildNameField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
       labelText: 'Digite seu nome',
       enabledBorder: OutlineInputBorder(
@@ -93,6 +111,12 @@ Widget buildNameField() {
 
 Widget buildNomeUsuarioField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
       labelText: 'Digite seu Usuário',
       enabledBorder: OutlineInputBorder(
@@ -106,21 +130,34 @@ Widget buildNomeUsuarioField() {
 
 Widget buildemailField() {
   return TextFormField(
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
-      labelText: 'Digite sua Senha',
+      labelText: 'Digite seu email',
       enabledBorder: OutlineInputBorder(
           borderRadius: (BorderRadius.all(Radius.circular(5)))),
       focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(width: 2, color: Colors.blue)),
-      prefixIcon: Icon(Icons.lock),
+      prefixIcon: Icon(Icons.email),
     ),
   );
 }
 
 Widget buildSenhaField() {
   return TextFormField(
+    obscureText: true,
+    validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Campo obrigatório!';
+      }
+      return null;
+    },
     decoration: InputDecoration(
-      labelText: 'Digite novamente sua senha',
+      labelText: 'Digite sua senha',
       enabledBorder: OutlineInputBorder(
           borderRadius: (BorderRadius.all(Radius.circular(5)))),
       focusedBorder: OutlineInputBorder(

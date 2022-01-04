@@ -22,7 +22,12 @@ environment:
 
 dependencies:
   path:
+<<<<<<< HEAD
   sqfLite:
+=======
+  sqflite:
+  shared_preferences:
+>>>>>>> develop
   flutter:
     sdk: flutter
   
